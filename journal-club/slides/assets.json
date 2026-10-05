@@ -13,8 +13,8 @@
  "bb295899ee3e30e3e59e996b83fe0557": "../figures/fig3a_gesfide.png",
  "6500948944a8cafa0fa2d13bba5e1a47": "../figures/fig3b_voxel.png",
  "db71375c9b72bcd356168fcd1f13ba1d": "../figures/fig5_tau_cbv.png",
- "c1c6752285f7c42a3d8a5ebe6de3b052": "../animations/anim_fingerprint.gif",
- "3b1906f179a9929b7a85d225b94cdaa7": "../animations/anim_sweep.gif",
- "2a186feb641d8d82bf910de0401072f7": "../animations/anim_spins.gif",
- "847864850ffef421c25e3c35e5ef1de4": "../animations/anim_matching.gif"
+ "3b1906f179a9929b7a85d225b94cdaa7": "../animations/assets/anim/anim_sweep.gif",
+ "2a186feb641d8d82bf910de0401072f7": "../animations/assets/anim/anim_spins.gif",
+ "e46271057a51c4e05ac4aceec8e467a6": "../animations/assets/anim/anim_fingerprint.gif",
+ "435fc88013f18dc2363e85d21e74c115": "../animations/assets/anim/anim_matching.gif"
 }
