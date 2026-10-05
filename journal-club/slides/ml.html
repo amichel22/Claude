@@ -1,0 +1,28 @@
+<section id="ml" data-transition="fade" style="background:#FCFCFB;color:#1B1B1F;font-family:Tinos, 'Times New Roman', serif;padding:96px 120px 150px;display:flex;flex-direction:column;gap:36px">
+<h2 style="font-size:56px;font-weight:700;line-height:1.1;color:#1B1B1F">Machine learning replaces the dictionary search</h2>
+<div style="display:flex;flex-direction:row;gap:60px;align-items:start">
+<div style="width:940px;display:flex;flex-direction:column;gap:24px">
+<img src="/_blob/ba2ce153e574c22dfae5ceb27329f36c" alt="Lin et al. Figure 8: CBF and bolus arrival time maps from MRF-ASL estimated with an artificial neural network and with dictionary matching across several slices; the network maps are less noisy, and green arrows mark artifacts corrected by the network" style="width:940px;height:540px;object-fit:contain;background:#FFFFFF">
+<p style="font-size:28px;line-height:1.3">Caveat: most networks learn from simulations (this one was trained on experimental data). A voxel unlike the training data can still return a plausible but wrong value, with no warning.</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:28px">
+<table style="font-size:26px;color:#1B1B1F">
+<tr><th style="width:40%;text-align:left">Time</th><th style="width:30%;text-align:right">Dictionary matching</th><th style="width:30%;text-align:right">Network</th></tr>
+<tr><td>MRF-ASL maps, total (H. Fan et al.)</td><td style="text-align:right">3 h 12 min</td><td style="text-align:right">3.6 s</td></tr>
+<tr><td>Per voxel (DeepMARS, Zhang 2020)</td><td style="text-align:right">&gt; 4 s</td><td style="text-align:right">&lt; 0.5 ms</td></tr>
+</table>
+<div style="display:flex;flex-direction:column;gap:4px"><p style="font-size:26px;color:#5B5F66">For MRvF</p><p style="font-size:28px;line-height:1.3">A network trained on simulated GESFIDE dictionaries was more accurate than matching for CBV, R and SO₂ (Lin et al., ISMRM 2024, abstract 3569). MARVEL uses an LSTM trained on 3D vessel simulations.</p></div>
+</div>
+</div>
+<p style="position:absolute;left:120px;bottom:56px;width:1400px;font-size:24px;color:#6B6F76">Lin, Lu &amp; Fan, Magn Reson Med 2025, Fig. 8 (adapted from H. Fan et al., Magn Reson Med 2021) and Section 6.2</p>
+<p style="position:absolute;right:120px;bottom:56px;width:120px;font-size:24px;color:#6B6F76;text-align:right">14</p>
+<aside>Next is machine learning, the part I'm most interested in for the rotation.
+
+Dictionary matching compares every voxel with every entry, so the cost grows with the dictionary. A neural network learns the mapping from signal to parameters once, and after that it's a single pass per voxel.
+
+This figure is also from Hongli Fan. The network rows, labeled ANN, are cleaner than dictionary matching, DM, and the green arrows mark artifacts the network removed. Total processing went from 3 hours 12 minutes to 3.6 seconds. DeepMARS reported under half a millisecond per voxel, versus more than 4 seconds.
+
+For MRvF, Lin and colleagues trained a network on simulated GESFIDE dictionaries and got better accuracy than matching for CBV, radius and SO2.
+
+The caveat is that most of these networks learn from simulations. This one is an exception, trained on experimental data. If a voxel looks unlike anything in training, a network can still return a plausible number, with no warning.</aside>
+</section>

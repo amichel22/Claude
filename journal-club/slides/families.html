@@ -1,0 +1,23 @@
+<section id="families" data-transition="fade" style="background:#FCFCFB;color:#1B1B1F;font-family:Tinos, 'Times New Roman', serif;padding:96px 120px 150px;display:flex;flex-direction:column;gap:36px">
+<h2 style="font-size:56px;font-weight:700;line-height:1.1;color:#1B1B1F">The review sorts the field into three families</h2>
+<table style="font-size:32px;color:#1B1B1F;line-height:1.3">
+<tr><th style="width:19%;text-align:left"></th><th style="width:27%;text-align:left">MRF-ASL</th><th style="width:27%;text-align:left">MRvF</th><th style="width:27%;text-align:left">MRF-VFD</th></tr>
+<tr><td style="color:#5B5F66">Physiology</td><td>Blood flow and transit</td><td>Vessel structure and oxygenation</td><td>Vessel function and permeability</td></tr>
+<tr><td style="color:#5B5F66">Main outputs</td><td>CBF, bolus arrival time, tissue T1, B1+</td><td>CBV, mean vessel radius R, SO₂; CVR when repeated</td><td>Ktrans, kep, water residence time τb, CBV</td></tr>
+<tr><td style="color:#5B5F66">Signal encoded by</td><td>Pseudo-random label and control blocks, varying label durations</td><td>Multi-echo gradient and spin echoes (GESFIDE, SAGE) or bSSFP</td><td>Contrast dynamics (DCE, DSC) or non-contrast T1-based MRF</td></tr>
+<tr><td style="color:#5B5F66">Dictionary model</td><td>One- or two-compartment kinetic model</td><td>Monte Carlo virtual voxel of vessels</td><td>Blood and tissue compartments exchanging water or contrast</td></tr>
+</table>
+<div style="flex:1"></div>
+<p style="font-size:30px;line-height:1.35;color:#4A4E55">Many of these methods also return supporting parameters such as T1, T2 and B1+ (Table 1).</p>
+<p style="position:absolute;left:120px;bottom:56px;width:1400px;font-size:24px;color:#6B6F76">Lin, Lu &amp; Fan, Magn Reson Med 2025, Tables 1 and 2</p>
+<p style="position:absolute;right:120px;bottom:56px;width:120px;font-size:24px;color:#6B6F76;text-align:right">6</p>
+<aside>The paper sorts the field into three families, and the rest of it follows this order.
+
+MRF-ASL randomizes the labeling and fits a kinetic model to get CBF and bolus arrival time.
+
+MR vascular fingerprinting, or MRvF, gets blood volume, mean vessel radius and SO2 from gradient and spin echo signals, using a Monte Carlo model of vessels. Repeated during a vascular challenge, it also gives cerebrovascular reactivity.
+
+The third, MRF-VFD, for vascular fluid dynamics, targets vessel function and permeability, like Ktrans and water exchange across the barrier.
+
+Many of these methods also give supporting maps like T1, T2 and B1.</aside>
+</section>

@@ -1,0 +1,27 @@
+<section id="mrvf-dict" data-transition="fade" style="background:#FCFCFB;color:#1B1B1F;font-family:Tinos, 'Times New Roman', serif;padding:96px 120px 150px;display:flex;flex-direction:column;gap:36px">
+<h2 style="font-size:56px;font-weight:700;line-height:1.1;color:#1B1B1F">MRvF dictionaries come from virtual voxels</h2>
+<div style="display:flex;flex-direction:row;gap:60px;align-items:start">
+<div style="width:760px;display:flex;flex-direction:column;gap:22px">
+<img src="/_blob/6500948944a8cafa0fa2d13bba5e1a47" alt="Lin et al. Figure 3B: a virtual voxel of randomly oriented blood vessels models a brain voxel with parameters SO2, CBV and R" style="width:760px;height:226px;object-fit:contain;background:#FFFFFF">
+<ul style="font-size:28px;line-height:1.3">
+<li>Monte Carlo: random cylinders and diffusing water give the GE and SE signal for each SO₂, CBV and R</li>
+<li>Christen 2014: 52,920 entries over SO₂ 0–⁠100%, CBV 0.5–⁠25%, R 1–⁠25 µm, with scans before and after ferumoxytol</li>
+<li>No contrast: SAGE at under 5 s per map, fast enough for CVR (Wheeler); bSSFP (Coudert)</li>
+<li>In rodent tumors, realistic 3D vessel networks matched histology better than cylinders (Delphin)</li>
+</ul>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:16px">
+<img src="/_blob/3b1906f179a9929b7a85d225b94cdaa7" alt="Animation: simulated 38-echo GESFIDE signal changing as oxygen saturation, then vessel radius, then blood volume are swept, with the 180 degree pulse at 50 ms and the spin echo at 100 ms marked" style="width:860px;height:485px;object-fit:contain;background:#FFFFFF">
+<p style="font-size:26px;line-height:1.3;color:#4A4E55">Simulated for this talk (T2 decay off): the 38-echo GESFIDE signal as SO₂, then R, then CBV change</p>
+</div>
+</div>
+<p style="position:absolute;left:120px;bottom:56px;width:1400px;font-size:24px;color:#6B6F76">Lin, Lu &amp; Fan, Magn Reson Med 2025, Fig. 3B, Table 2 and Section 3</p>
+<p style="position:absolute;right:120px;bottom:56px;width:120px;font-size:24px;color:#6B6F76;text-align:right">10</p>
+<aside>To turn that into numbers, MRvF builds the dictionary from virtual voxels, shown in Figure 3B. You fill a voxel with randomly oriented cylinders and let water diffuse through it. Then you compute the signal for each SO2, CBV and radius.
+
+On the right is the GESFIDE signal from my small dictionary as I change one parameter at a time, again without T2 decay. The gray curve is where it starts. Lower SO2 makes the signal decay faster. Changing the radius shifts the balance between the gradient echo and spin echo parts. More blood volume also speeds up the decay.
+
+Christen's 2014 paper built this kind of dictionary, with about 53,000 entries, and used it with scans before and after ferumoxytol. Newer work needs no contrast: SAGE is fast enough to track reactivity, and Coudert used bSSFP.
+
+In rodent tumors, dictionaries built from realistic 3D vessel networks also matched histology better than cylinders.</aside>
+</section>

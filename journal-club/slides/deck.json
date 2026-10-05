@@ -1,0 +1,19 @@
+{
+  "v": 4,
+  "createdOnFiles": { "v": 1, "at": "2026-10-05T18:49:20Z" },
+  "lists": "css",
+  "title": "MRF in Cerebral Physiology",
+  "cover": "cover",
+  "order": ["cover", "problem", "mrf-idea", "matching", "workflow", "families", "mrf-asl", "mrvf-seq", "mrvf-physics", "mrvf-dict", "vfd", "stroke", "tumor", "ml", "challenges", "take", "rotation", "end"],
+  "sections": {
+    "s1": { "description": "Why physiological MRF: one scan, many physiological maps", "start": "cover" },
+    "s2": { "description": "How MRF works: fingerprints, dictionaries and matching", "start": "mrf-idea" },
+    "s3": { "description": "The three families in the review: MRF-ASL, MRvF and MRF-VFD", "start": "families" },
+    "s4": { "description": "Clinical results in stroke, Moyamoya and tumors", "start": "stroke" },
+    "s5": { "description": "Machine learning, open challenges, discussion and the rotation", "start": "ml" }
+  },
+  "faces": {
+    "tinos": { "family": "Tinos", "href": "https://fonts.googleapis.com/css2?family=Tinos:ital,wght@0,400;0,700;1,400;1,700&display=swap" }
+  },
+  "designSystems": []
+}

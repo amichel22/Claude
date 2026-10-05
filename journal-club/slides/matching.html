@@ -1,0 +1,16 @@
+<section id="matching" data-transition="fade" style="background:#FCFCFB;color:#1B1B1F;font-family:Tinos, 'Times New Roman', serif;padding:96px 120px 150px;display:flex;flex-direction:column;gap:36px">
+<h2 style="font-size:56px;font-weight:700;line-height:1.1;color:#1B1B1F">Reading a fingerprint: dictionary matching</h2>
+<div style="display:flex;flex-direction:column;gap:20px;align-items:center">
+<img src="/_blob/847864850ffef421c25e3c35e5ef1de4" alt="Animation: a noisy measured 38-echo signal is compared with dictionary curves one by one; the normalized inner product is shown for each, and the best match lights up in a map of oxygen saturation versus vessel radius" style="width:1300px;height:672px;object-fit:contain;background:#FFFFFF">
+<p style="font-size:30px;color:#4A4E55;text-align:center">Normalize every curve → inner product with each entry → keep the highest → that entry gives SO₂, CBV and R</p>
+</div>
+<p style="position:absolute;left:120px;bottom:56px;width:1400px;font-size:24px;color:#6B6F76">Animation: small MRvF dictionary simulated for this talk (2D Monte Carlo, 38-echo GESFIDE timing)</p>
+<p style="position:absolute;right:120px;bottom:56px;width:120px;font-size:24px;color:#6B6F76;text-align:right">4</p>
+<aside>Here's how that search works. The animation uses a small vascular dictionary I simulated, the same kind of signal we'll see later for MRvF.
+
+The dark dots are a simulated voxel signal with a little noise added, standing in for a measurement. The gray curve is the entry being checked, and the red curve is the best match so far. For each entry, you normalize both curves and take the inner product. That gives a similarity score, and the highest score wins.
+
+In the grid, each square is one combination of oxygen saturation and vessel radius, and darker means more similar. When the search finishes, the best entry is circled, and its parameters become that voxel's values. Here it lands on the true values. So one search gives you all the parameters at once.
+
+Notice that the scores are all above 0.99. Neighboring entries look very alike, which is why noise matters so much.</aside>
+</section>

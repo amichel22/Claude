@@ -1,0 +1,20 @@
+{
+ "5ca58f08d861f57bb346ee5fa4197ba6": "../figures/fig1_overview.png",
+ "fcad1dcd7fcb7b5e75c0531d41c1f30d": "../figures/fig2_mrf_asl.png",
+ "ca3d7859aba99f2a8f55da6b775fb2d8": "../figures/fig3_mrvf.png",
+ "23970dbf2cd7a5d98c41202dac3e1dcb": "../figures/fig4_vfd.png",
+ "fe99b66e132b5bda850faeb3ae6daac0": "../figures/fig5_thomson_maps.png",
+ "cbab9796a1f17b9750642e2aa4f670f5": "../figures/fig6_stroke.png",
+ "ca86463f12af180e61805032fa4c21ad": "../figures/fig7_glioma.png",
+ "ba2ce153e574c22dfae5ceb27329f36c": "../figures/fig8_ann_vs_dm.png",
+ "67fd1e60bf34ff4c7824afee05455df1": "../figures/map_so2.png",
+ "e391cae263b7dafd1440756c22b5560f": "../figures/map_cbv.png",
+ "e615d7edd008f9c19812192c0a09757f": "../figures/map_r.png",
+ "bb295899ee3e30e3e59e996b83fe0557": "../figures/fig3a_gesfide.png",
+ "6500948944a8cafa0fa2d13bba5e1a47": "../figures/fig3b_voxel.png",
+ "db71375c9b72bcd356168fcd1f13ba1d": "../figures/fig5_tau_cbv.png",
+ "c1c6752285f7c42a3d8a5ebe6de3b052": "../animations/anim_fingerprint.gif",
+ "3b1906f179a9929b7a85d225b94cdaa7": "../animations/anim_sweep.gif",
+ "2a186feb641d8d82bf910de0401072f7": "../animations/anim_spins.gif",
+ "847864850ffef421c25e3c35e5ef1de4": "../animations/anim_matching.gif"
+}

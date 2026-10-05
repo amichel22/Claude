@@ -1,0 +1,36 @@
+<section id="rotation" data-transition="fade" style="background:#FCFCFB;color:#1B1B1F;font-family:Tinos, 'Times New Roman', serif;padding:96px 120px 150px;display:flex;flex-direction:column;gap:36px">
+<h2 style="font-size:56px;font-weight:700;line-height:1.1;color:#1B1B1F">How this connects to my rotation</h2>
+<div style="display:flex;flex-direction:row;gap:12px;align-items:center">
+<div style="flex:1;align-self:stretch;background:#F1F2F3;border-radius:4px;padding:32px;display:flex;flex-direction:column;gap:12px"><h3 style="font-size:36px;font-weight:700;line-height:1.2">BOLDsωimsuite</h3><p style="font-size:28px;line-height:1.3;color:#4A4E55">Vessel geometry, field offsets, diffusion, signal</p></div>
+<x-shape kind="arrow-right" style="width:56px;height:28px;background:#8A8F96"></x-shape>
+<div style="flex:1;align-self:stretch;background:#F1F2F3;border-radius:4px;padding:32px;display:flex;flex-direction:column;gap:12px"><h3 style="font-size:36px;font-weight:700;line-height:1.2">GESFIDE dictionary</h3><p style="font-size:28px;line-height:1.3;color:#4A4E55">The lab's 38-echo timing, over SO₂, CBV and R</p></div>
+<x-shape kind="arrow-right" style="width:56px;height:28px;background:#8A8F96"></x-shape>
+<div style="flex:1;align-self:stretch;background:#F7ECEA;border-radius:4px;padding:32px;display:flex;flex-direction:column;gap:12px"><h3 style="font-size:36px;font-weight:700;line-height:1.2;color:#A8322D">Estimation</h3><p style="font-size:28px;line-height:1.3;color:#4A4E55">Dictionary matching vs a neural network</p></div>
+<x-shape kind="arrow-right" style="width:56px;height:28px;background:#8A8F96"></x-shape>
+<div style="flex:1;align-self:stretch;background:#F1F2F3;border-radius:4px;padding:32px;display:flex;flex-direction:column;gap:12px"><h3 style="font-size:36px;font-weight:700;line-height:1.2">Lab data</h3><p style="font-size:28px;line-height:1.3;color:#4A4E55">CBV, vessel radius and SO₂ maps</p></div>
+</div>
+<div style="height:28px"></div>
+<div style="display:flex;flex-direction:row;gap:80px">
+<div style="flex:1;display:flex;flex-direction:column;gap:22px">
+<p style="font-size:34px;font-weight:700;color:#1F4E79">Questions I want to answer</p>
+<p style="font-size:31px;line-height:1.35">Is a network as accurate as dictionary matching for CBV, R and SO₂?</p>
+<p style="font-size:31px;line-height:1.35">How much faster is it?</p>
+<p style="font-size:31px;line-height:1.35">How does it behave at low SNR and outside its training range?</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:22px">
+<p style="font-size:34px;font-weight:700;color:#1F4E79">First steps</p>
+<p style="font-size:31px;line-height:1.35">Run Jack's BOLDsωimsuite notebook end to end</p>
+<p style="font-size:31px;line-height:1.35">Reproduce the reference GESFIDE simulation</p>
+<p style="font-size:31px;line-height:1.35">Rebuild my test dictionary in BOLDsωimsuite and test matching on noisy signals</p>
+</div>
+</div>
+<p style="position:absolute;left:120px;bottom:56px;width:1400px;font-size:24px;color:#6B6F76">BOLDsωimsuite: Chaussé, Berman &amp; Chen, Imaging Neuroscience 2025 · Rotation plan, Fall 2026</p>
+<p style="position:absolute;right:120px;bottom:56px;width:120px;font-size:24px;color:#6B6F76;text-align:right">17</p>
+<aside>Last, how this connects to my rotation. The plan follows the MRvF and machine learning sections of the paper.
+
+BOLD swim suite simulates the vessel geometry, the field, diffusion and the signal. I'll use it to build a GESFIDE dictionary with the lab's 38-echo timing. Then I'll compare dictionary matching with a neural network, and apply both to the lab's data.
+
+The questions are simple. Is the network as accurate? How much faster is it? And how does it behave at low SNR, or outside its training range?
+
+My first steps are to run Jack's notebook, reproduce the reference simulation, and rebuild my test dictionary in BOLD swim suite.</aside>
+</section>
