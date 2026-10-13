@@ -1,6 +1,6 @@
 # Fan Lab rotation, Fall 2026
 
-Andres Michel. Materials for the journal club on Lin, Lu & Fan 2025 and for getting started with the BOLDsωimsuite notebook.
+Andres Michel. Materials for the journal club on Lin, Lu & Fan 2025, for getting started with the BOLDsωimsuite notebook, and for the toolbox talk and rotation plan.
 
 ## Journal club: Lin, Lu & Fan 2025
 
@@ -41,3 +41,20 @@ The GIFs, MP4 copies and the small dictionary (`mrvf_dict.npz`) are in `journal-
 ## Rotation: what to do with Jack's notebook
 
 `rotation/pipeline-guide.md` is a Markdown copy of the shared doc "What to do with Jack's BOLDsωimsuite notebook" (https://claude.ai/code/artifact/e0be4871-6b10-4fea-9427-abe90dbe6dce). It covers setup (Python 3.10 `bold` environment; the notebook's saved `mrf` kernel will not work), a day-1 checklist, a section-by-section reading guide with the numbers to reproduce, the concepts the notebook assumes, the path from notebook to dictionary, matching and ML comparison, gotchas, questions for Jack, and a plan for weeks 2–10.
+
+## Toolbox talk: BOLDsωimsuite and the rotation plan
+
+Slides for Dr. Fan on what BOLDsωimsuite does, the two papers behind it, what I ran, and how it becomes the rotation project. Papers: Chaussé, Berman & Chen, *Imaging Neuroscience* 2025 (doi:10.1162/imag_a_00519) and Berman, Chaussé, Hartung et al., *Imaging Neuroscience* 2026 (doi:10.1162/IMAG.a.1247).
+
+- **Deck (18 slides, about 17 min):** https://claude.ai/artifact/G5HfX6UUMbQXMXH3u541xn. The speaker notes hold the script. Private until shared from the deck's Share menu.
+- **Rotation guide (doc):** https://claude.ai/code/artifact/f628293b-a5d4-4ce6-b50d-1800cd3c4d02. What the toolbox is, the two papers, how to check your notebook run, the cluster, the project in three parts with a timeline to Dec 4, things to try with expected results, a glossary, and questions for Jack and Dr. Fan.
+
+| Path | What it is |
+| --- | --- |
+| `toolbox-talk/script.md` | Read-aloud script, one section per slide |
+| `toolbox-talk/slides/` | Slide sources (`deck.json`, one HTML file per slide); `assets.json` maps the `/_blob/...` ids to the figures below |
+| `toolbox-talk/figures/papers/` | Figures cropped from the two papers |
+| `toolbox-talk/figures/my-runs/` | Figures from my BOLDsωimsuite runs, plus `summary.json` with the numbers behind them |
+| `toolbox-talk/playground/` | The scripts that made them (`check_install.py`, `run_play.py`, `analyze_play.py`); see its README |
+
+The "my runs" figures are a toy version of the project on the lab's 38-echo GESFIDE timing: 3D-ANA-MC reference signals matched against 3D, 2D (own field direction per vessel) and 2D 3B0 (MrVox-style) dictionaries, at one blood volume, T2 off, 2 voxels × 10,000 spins per entry. The 3B0 dictionary got 3 of 12 radii right and shifted SO2 by up to 20 points; the other two missed only by one grid step.

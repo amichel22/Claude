@@ -1,0 +1,29 @@
+<section id="paper2-result" data-transition="fade" style="background:#FCFCFB;color:#1B1B1F;font-family:Tinos, 'Times New Roman', serif;padding:96px 120px 150px;display:flex;flex-direction:column;gap:36px">
+<h2 style="font-size:56px;font-weight:700;line-height:1.1;color:#1B1B1F">Two shortcuts got the vessel size wrong</h2>
+<div style="display:flex;flex-direction:row;gap:56px;align-items:start">
+<img src="/_blob/f06d2e0479e580318ad7bf8ff21f467a" alt="Berman et al. Figure 4: fingerprinting results for eight approaches. Each panel plots estimated against true radius; most estimates sit on the diagonal, while 2D-ANA-MC-1V and especially 2D-ANA-MC-3B0 fall off it" style="width:1040px;height:561px;object-fit:contain;background:#FFFFFF">
+<div style="flex:1;display:flex;flex-direction:column;gap:16px">
+<p style="font-size:26px;color:#5B5F66">Radii estimated wrong, out of 15</p>
+<table style="font-size:28px;color:#1B1B1F">
+<tr><th style="width:72%;text-align:left">Dictionary from</th><th style="width:28%;text-align:right">Wrong</th></tr>
+<tr><td>2D-ANA-MC</td><td style="text-align:right">0</td></tr>
+<tr><td>2D-ANA-DD</td><td style="text-align:right">0</td></tr>
+<tr><td>3D-ANA-MC-GRID</td><td style="text-align:right">0</td></tr>
+<tr><td>3D-FFT-MC</td><td style="text-align:right">2</td></tr>
+<tr><td>3D-FFT-MC-VAN</td><td style="text-align:right">2</td></tr>
+<tr><td>2D-ANA-MC-1V</td><td style="text-align:right">7</td></tr>
+<tr><td><span style="color:#A8322D">2D-ANA-MC-3B0</span></td><td style="text-align:right"><span style="color:#A8322D">12</span></td></tr>
+</table>
+<p style="font-size:28px;line-height:1.3">3B0: mean error 54%, worst 233%. Single vessel (1V): mean 13%, worst 33%.</p>
+</div>
+</div>
+<p style="position:absolute;left:120px;bottom:56px;width:1400px;font-size:24px;color:#6B6F76">Berman, Chaussé, Hartung et al., Imaging Neuroscience 2026, Figs. 4 and 5, Section 4.1</p>
+<p style="position:absolute;right:120px;bottom:56px;width:120px;font-size:24px;color:#6B6F76;text-align:right">7</p>
+<aside>Here's the fingerprinting result. Each small panel uses one approach as the dictionary. The horizontal axis is the true radius, the vertical axis is the radius the matching picked, and the red squares are the estimates. On the black line means it got it right.
+
+Most approaches are on the line. The 2D version with a random field direction per vessel got all fifteen right, and so did grid diffusion. The FFT approaches missed two each.
+
+Two shortcuts did badly. The single-vessel approach missed seven, with a mean error of 13 percent. And 3B0, top right, missed twelve of fifteen, with a mean error of 54 percent and a worst case of 233 percent.
+
+So the recipe really can change the vessel size you report.</aside>
+</section>

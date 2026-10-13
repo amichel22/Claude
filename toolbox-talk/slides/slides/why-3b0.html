@@ -1,0 +1,25 @@
+<section id="why-3b0" data-transition="fade" style="background:#FCFCFB;color:#1B1B1F;font-family:Tinos, 'Times New Roman', serif;padding:96px 120px 150px;display:flex;flex-direction:column;gap:36px">
+<h2 style="font-size:56px;font-weight:700;line-height:1.1;color:#1B1B1F">Why 3B0 fails: the blood stops dephasing</h2>
+<div style="display:flex;flex-direction:row;gap:64px;align-items:start">
+<div style="width:1100px;display:flex;flex-direction:column;gap:16px">
+<img src="/_blob/3c4dc233edba6d8091dbd759aebbeaa6" alt="Field offset maps of the same 2D vessel layout. Left: each vessel has its own field direction, so the lobes point different ways and the blood inside vessels sits at many different offsets. Right: the 3B0 average, where every dipole points the same way and the blood inside the vessels sits near zero" style="width:1100px;height:515px;object-fit:contain;background:#FFFFFF">
+<p style="font-size:26px;line-height:1.3;color:#4A4E55">Same vessels, two ways to compute the field (my runs). Vessel edges are outlined.</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:28px">
+<p style="font-size:30px;line-height:1.35">With 3B0, the field is averaged over three directions, so the blood inside every vessel ends up near zero offset.</p>
+<p style="font-size:30px;line-height:1.35">The blood signal then barely decays: about 2 per second instead of about 42 in the 3D reference.</p>
+<p style="font-size:30px;line-height:1.35">Blood is only 2–⁠3% of the voxel, but it carries about a quarter of the gradient-echo decay. So the total signal, and the fit, are off.</p>
+</div>
+</div>
+<p style="position:absolute;left:120px;bottom:56px;width:1400px;font-size:24px;color:#6B6F76">Berman et al. 2026, Figs. 8C and 10, Section 5.1.5 · Field maps and decay rates: my BOLDsωimsuite runs, 3% blood volume, SO₂ 60%</p>
+<p style="position:absolute;right:120px;bottom:56px;width:120px;font-size:24px;color:#6B6F76;text-align:right">8</p>
+<aside>Why does 3B0 do so badly? I made these two field maps to see it for myself. Same vessels, two ways of computing the field.
+
+On the left, each vessel gets its own field direction, which is what happens in a real brain, since vessels point every which way. The patterns point in different directions, and the blood inside each vessel sits at a different field.
+
+On the right is 3B0. It averages the field over three directions to save time. Every pattern now points the same way, and the blood inside every vessel ends up near zero.
+
+If the blood sits at zero offset, the blood signal hardly decays. In my runs it decays at about 2 per second, versus about 42 in the 3D reference. Berman shows the same thing.
+
+That sounds small, because blood is only a few percent of the voxel. But blood decays so fast that it carries about a quarter of the gradient-echo decay. So the whole signal is off, and so is anything you fit from it.</aside>
+</section>

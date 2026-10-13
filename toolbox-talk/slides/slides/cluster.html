@@ -1,0 +1,23 @@
+<section id="cluster" data-transition="fade" style="background:#FCFCFB;color:#1B1B1F;font-family:Tinos, 'Times New Roman', serif;padding:96px 120px 150px;display:flex;flex-direction:column;gap:36px">
+<h2 style="font-size:56px;font-weight:700;line-height:1.1;color:#1B1B1F">Scaling up: why the cluster</h2>
+<div style="display:flex;flex-direction:row;gap:48px">
+<div style="flex:1;display:flex;flex-direction:column;gap:8px"><p style="font-size:80px;font-weight:700;color:#1F4E79">~35 s</p><p style="font-size:28px;line-height:1.3;color:#4A4E55">one 3D simulation on one core (10,000 spins, 38 echoes)</p></div>
+<div style="flex:1;display:flex;flex-direction:column;gap:8px"><p style="font-size:80px;font-weight:700;color:#1F4E79">~1,100</p><p style="font-size:28px;line-height:1.3;color:#4A4E55">runs for a first real dictionary: 25 radii × 15 blood volumes × 3 voxels</p></div>
+<div style="flex:1;display:flex;flex-direction:column;gap:8px"><p style="font-size:80px;font-weight:700;color:#1F4E79">10–⁠12 h</p><p style="font-size:28px;line-height:1.3;color:#4A4E55">on one core, or well under an hour as 30 jobs side by side</p></div>
+</div>
+<div style="height:8px"></div>
+<div style="display:flex;flex-direction:column;gap:22px;width:1560px">
+<p style="font-size:30px;line-height:1.35"><b>SO₂ is free.</b> One run is rescaled to any oxygenation, so only radius, blood volume and voxel need separate runs.</p>
+<p style="font-size:30px;line-height:1.35"><b>Each run uses one core</b>, so the natural unit is one run per array task on ideacluster, the same way the MrVox jobs are split.</p>
+<p style="font-size:30px;line-height:1.35"><b>Next step:</b> my account, test one task interactively, then a small array with Jack's job template.</p>
+</div>
+<p style="position:absolute;left:120px;bottom:56px;width:1400px;font-size:24px;color:#6B6F76">Timings from my runs and Jack's notebook (sections 7 and 8) · job template from Jack's setup guide</p>
+<p style="position:absolute;right:120px;bottom:56px;width:120px;font-size:24px;color:#6B6F76;text-align:right">15</p>
+<aside>Everything so far ran on a laptop. A real dictionary is bigger, and that's where the cluster comes in.
+
+One 3D simulation takes about 35 seconds on one core. A first real dictionary, say 25 radii, 15 blood volumes and 3 random voxels each, is about 1,100 runs. That's 10 to 12 hours on one core, but each run is independent, so as 30 jobs side by side on the cluster it takes well under an hour.
+
+Two things make this manageable. Oxygenation is free, because one run can be rescaled to any SO2. And each run uses one core, so it maps onto array jobs the same way the MrVox jobs are already split.
+
+My next step there is to get my account, test one job interactively, and then run a small array with Jack's template.</aside>
+</section>

@@ -1,0 +1,24 @@
+<section id="for-us" data-transition="fade" style="background:#FCFCFB;color:#1B1B1F;font-family:Tinos, 'Times New Roman', serif;padding:96px 120px 150px;display:flex;flex-direction:column;gap:36px">
+<h2 style="font-size:56px;font-weight:700;line-height:1.1;color:#1B1B1F">Why this matters for our dictionaries</h2>
+<div style="display:flex;flex-direction:column;gap:34px;width:1560px">
+<div style="display:flex;flex-direction:row;gap:20px"><p style="width:40px;font-size:32px;color:#5B5F66">1.</p><p style="flex:1;font-size:32px;line-height:1.35">MrVox uses the 3B0 shortcut, with an FFT field and grid diffusion. It made the dictionary for the first MRvF paper (Christen 2014) and several since.</p></div>
+<div style="display:flex;flex-direction:row;gap:20px"><p style="width:40px;font-size:32px;color:#5B5F66">2.</p><p style="flex:1;font-size:32px;line-height:1.35">MrVox contributors found that 3B0 overestimated vessel radius by 14–⁠19% in rats, compared with a dictionary from realistic vessel networks (Delphin 2024).</p></div>
+<div style="display:flex;flex-direction:row;gap:20px"><p style="width:40px;font-size:32px;color:#5B5F66">3.</p><p style="flex:1;font-size:32px;line-height:1.35">Berman's advice: use 3D-ANA-MC, or 2D-ANA-MC, which matched it almost exactly. Use 3B0 with caution.</p></div>
+</div>
+<div style="flex:1"></div>
+<div style="background:#F7ECEA;border-radius:4px;padding:32px 40px;display:flex;flex-direction:column;gap:12px;width:1560px">
+<p style="font-size:32px;font-weight:700;color:#A8322D">Not tested yet</p>
+<p style="font-size:30px;line-height:1.35">Berman only checked vessel radius, with plain gradient- and spin-echo signals at one blood volume. Nobody has checked our 38-echo GESFIDE, or what 3B0 does to CBV and SO₂.</p>
+</div>
+<p style="position:absolute;left:120px;bottom:56px;width:1400px;font-size:24px;color:#6B6F76">Berman et al. 2026, Sections 5.1.5 and 6; Chaussé et al. 2025, Section 5.4</p>
+<p style="position:absolute;right:120px;bottom:56px;width:120px;font-size:24px;color:#6B6F76;text-align:right">9</p>
+<aside>So why does this matter for us?
+
+MrVox, the Matlab toolbox, uses exactly that 3B0 shortcut, together with an FFT field and grid diffusion. It made the dictionary for the first vascular fingerprinting paper, Christen 2014, and several after it. As far as I understand, our current dictionaries come from MrVox too. Jack, correct me if that's wrong.
+
+And it's not only Berman saying this. People who work on MrVox compared 3B0 with a dictionary from realistic vessel networks in rats, and 3B0 overestimated vessel radius by 14 to 19 percent.
+
+Berman's recommendation is to use the 3D reference, or the 2D version where each vessel gets its own field direction, because it matched the reference almost exactly.
+
+What nobody has checked yet is our case: the 38-echo GESFIDE signal, and what 3B0 does to blood volume and oxygenation, not just radius. That's the gap I think I can work on.</aside>
+</section>

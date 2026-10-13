@@ -1,0 +1,26 @@
+<section id="why-sim" data-transition="fade" style="background:#FCFCFB;color:#1B1B1F;font-family:Tinos, 'Times New Roman', serif;padding:96px 120px 150px;display:flex;flex-direction:column;gap:36px">
+<h2 style="font-size:56px;font-weight:700;line-height:1.1;color:#1B1B1F">Why the lab needs a simulator</h2>
+<div style="flex:1"></div>
+<div style="display:flex;flex-direction:row;gap:12px;align-items:center">
+<div style="flex:1;align-self:stretch;background:#F1F2F3;border-radius:4px;padding:32px;display:flex;flex-direction:column;gap:12px"><h3 style="font-size:36px;font-weight:700;line-height:1.2">GESFIDE scan</h3><p style="font-size:28px;line-height:1.3;color:#4A4E55">38 echoes: one decay curve per voxel</p></div>
+<x-shape kind="arrow-right" style="width:56px;height:28px;background:#8A8F96"></x-shape>
+<div style="flex:1;align-self:stretch;background:#F7ECEA;border-radius:4px;padding:32px;display:flex;flex-direction:column;gap:12px"><h3 style="font-size:36px;font-weight:700;line-height:1.2;color:#A8322D">Dictionary</h3><p style="font-size:28px;line-height:1.3;color:#4A4E55">Simulated curves for every SO₂, CBV and R. BOLDsωimsuite makes these</p></div>
+<x-shape kind="arrow-right" style="width:56px;height:28px;background:#8A8F96"></x-shape>
+<div style="flex:1;align-self:stretch;background:#F1F2F3;border-radius:4px;padding:32px;display:flex;flex-direction:column;gap:12px"><h3 style="font-size:36px;font-weight:700;line-height:1.2">Matching</h3><p style="font-size:28px;line-height:1.3;color:#4A4E55">Pick the simulated curve closest to the measured one</p></div>
+<x-shape kind="arrow-right" style="width:56px;height:28px;background:#8A8F96"></x-shape>
+<div style="flex:1;align-self:stretch;background:#F1F2F3;border-radius:4px;padding:32px;display:flex;flex-direction:column;gap:12px"><h3 style="font-size:36px;font-weight:700;line-height:1.2">Maps</h3><p style="font-size:28px;line-height:1.3;color:#4A4E55">Blood volume, vessel radius and oxygenation</p></div>
+</div>
+<div style="flex:1"></div>
+<p style="font-size:40px;line-height:1.3;color:#1B1B1F;width:1500px">The maps can only be as right as the simulated curves. If the simulation is off, every voxel is off in the same direction, and the matching step will not tell us.</p>
+<p style="position:absolute;left:120px;bottom:56px;width:1400px;font-size:24px;color:#6B6F76">MR vascular fingerprinting (MRvF): Christen et al., NeuroImage 2014; Lin, Lu &amp; Fan, Magn Reson Med 2025</p>
+<p style="position:absolute;right:120px;bottom:56px;width:120px;font-size:24px;color:#6B6F76;text-align:right">2</p>
+<aside>First, why we need a simulator at all.
+
+With vascular fingerprinting, the scanner gives us a decay curve for each voxel, 38 echoes from GESFIDE. On its own, that curve doesn't tell us blood volume or vessel size.
+
+So we build a dictionary: simulated curves for every combination of oxygenation, blood volume and vessel radius. Then we match each measured curve to the closest simulated one and read off the parameters. That gives us the maps.
+
+The key point is on the bottom. The maps can only be as right as the simulated curves. If the simulation has a bias, every voxel gets the same bias, and the matching step has no way of flagging it.
+
+BOLD swim suite is the tool that makes those simulated curves.</aside>
+</section>

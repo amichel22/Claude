@@ -1,0 +1,14 @@
+<section id="vessel-size" data-transition="fade" style="background:#FCFCFB;color:#1B1B1F;font-family:Tinos, 'Times New Roman', serif;padding:96px 120px 150px;display:flex;flex-direction:column;gap:36px">
+<h2 style="font-size:56px;font-weight:700;line-height:1.1;color:#1B1B1F">Berman's result holds on our sequence</h2>
+<img src="/_blob/cd4ef09900a1d1aedf588c27996ba4fe" alt="Relaxation rate against vessel radius on the lab's GESFIDE timing. Left, gradient echo at 29 ms: the 3D reference and the 2D own-direction approach overlap, rising from about 1.4 to 4.4 per second; the 3B0 average sits well below, reaching about 3.3. Right, spin echo at 100 ms: all three peak near 5 micrometers at about 1.5 per second and agree closely" style="width:1680px;height:588px;object-fit:contain;background:#FFFFFF">
+<p style="font-size:28px;line-height:1.3;color:#4A4E55">The 2D recipe with its own direction per vessel tracks the 3D reference. 3B0 falls short in the gradient echo, by about a quarter for large vessels and more for small ones; the spin echo stays much closer.</p>
+<p style="position:absolute;left:120px;bottom:56px;width:1400px;font-size:24px;color:#6B6F76">My BOLDsωimsuite runs on 38-echo GESFIDE timing, SO₂ 60%, 3% blood volume, T2 off · compare Berman et al. 2026, Fig. 8C</p>
+<p style="position:absolute;right:120px;bottom:56px;width:120px;font-size:24px;color:#6B6F76;text-align:right">12</p>
+<aside>Next I wanted to see whether Berman's result holds on our sequence. These are Boxerman plots, the classic check: how fast the signal decays as a function of vessel size.
+
+On the left is the gradient-echo part, at about 30 milliseconds. The 3D reference, in black, and the 2D version with its own direction per vessel, in blue, sit on top of each other. 3B0, in red, sits well below: about three quarters of the reference for large vessels, and much less for small ones.
+
+On the right is the spin echo, at 100 milliseconds. It peaks around capillary size, which is the classic result, and here the three are much closer, with 3B0 a bit low for small vessels.
+
+So the problem is in the gradient-echo part, which is exactly the part GESFIDE samples in the first 50 milliseconds. Same pattern as Berman's Figure 8C, now with our timing.</aside>
+</section>

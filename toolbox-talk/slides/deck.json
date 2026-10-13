@@ -1,0 +1,18 @@
+{
+  "v": 4,
+  "createdOnFiles": { "v": 1, "at": "2026-10-13T20:00:00Z" },
+  "lists": "css",
+  "title": "BOLDsωimsuite Toolbox Talk",
+  "cover": "cover",
+  "order": ["cover", "why-sim", "what-sim", "four-choices", "paper1", "paper2-setup", "paper2-result", "why-3b0", "for-us", "ran-it", "knobs", "vessel-size", "pilot", "pilot-so2", "cluster", "plan", "asks", "end"],
+  "sections": {
+    "s1": { "description": "Why the lab needs a BOLD simulator and what one simulation does", "start": "cover" },
+    "s2": { "description": "The two papers: the toolbox (Chaussé 2025) and the comparison of recipes (Berman 2026)", "start": "paper1" },
+    "s3": { "description": "What I ran and what I found playing with it", "start": "ran-it" },
+    "s4": { "description": "Scaling up on the cluster and the rotation plan", "start": "cluster" }
+  },
+  "faces": {
+    "tinos": { "family": "Tinos", "href": "https://fonts.googleapis.com/css2?family=Tinos:ital,wght@0,400;0,700;1,400;1,700&display=swap" }
+  },
+  "designSystems": []
+}

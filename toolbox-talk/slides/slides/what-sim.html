@@ -1,0 +1,20 @@
+<section id="what-sim" data-transition="fade" style="background:#FCFCFB;color:#1B1B1F;font-family:Tinos, 'Times New Roman', serif;padding:96px 120px 150px;display:flex;flex-direction:column;gap:36px">
+<h2 style="font-size:56px;font-weight:700;line-height:1.1;color:#1B1B1F">What one simulation does</h2>
+<img src="/_blob/2b308b0984c874ef6fc9d51f231884b4" alt="Chaussé et al. Figure 4a to c: a 2D voxel with randomly oriented cylinders, the field offset map around them, and the total, extravascular and intravascular spin-echo signals over 120 ms" style="width:1680px;height:421px;object-fit:contain;background:#FFFFFF">
+<div style="display:flex;flex-direction:row;gap:48px">
+<div style="flex:1;display:flex;flex-direction:row;gap:16px"><p style="width:40px;font-size:32px;font-weight:700;color:#5B5F66">1</p><p style="flex:1;font-size:30px;line-height:1.3">Place vessels in a virtual voxel: how many, how big, which way they point</p></div>
+<div style="flex:1;display:flex;flex-direction:row;gap:16px"><p style="width:40px;font-size:32px;font-weight:700;color:#5B5F66">2</p><p style="flex:1;font-size:30px;line-height:1.3">Compute the field each vessel creates. Deoxygenated blood is slightly magnetic</p></div>
+<div style="flex:1;display:flex;flex-direction:row;gap:16px"><p style="width:40px;font-size:32px;font-weight:700;color:#5B5F66">3</p><p style="flex:1;font-size:30px;line-height:1.3">Let water diffuse through the field and add up the signal over time</p></div>
+</div>
+<p style="position:absolute;left:120px;bottom:56px;width:1400px;font-size:24px;color:#6B6F76">Chaussé, Berman &amp; Chen, Imaging Neuroscience 2025, Fig. 4a–c (spin echo, TE 70 ms)</p>
+<p style="position:absolute;right:120px;bottom:56px;width:120px;font-size:24px;color:#6B6F76;text-align:right">3</p>
+<aside>Here's what a single simulation looks like, from the toolbox paper.
+
+On the left is a virtual voxel: a slice through randomly oriented vessels, like a capillary bed.
+
+In the middle is the magnetic field around them. Deoxygenated blood is slightly magnetic, so each vessel bends the field nearby. That's the red and blue pattern.
+
+Then the simulation lets water molecules wander through that field. Each one picks up a slightly different phase, they fall out of sync, and the signal drops. On the right you can see the spin-echo signal: it decays, the refocusing pulse brings part of it back, and then it decays again. They also split it into the tissue part and the blood part.
+
+For a dictionary, you just repeat this for every combination of oxygenation, blood volume and radius.</aside>
+</section>
