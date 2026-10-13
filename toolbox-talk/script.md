@@ -18,7 +18,7 @@ With vascular fingerprinting, the scanner gives us a decay curve for each voxel,
 
 So we build a dictionary: simulated curves for every combination of oxygenation, blood volume and vessel radius. Then we match each measured curve to the closest simulated one and read off the parameters. That gives us the maps.
 
-The key point is on the bottom. The maps can only be as right as the simulated curves. If the simulation has a bias, every voxel gets the same bias, and the matching step has no way of flagging it.
+The key point is on the bottom. The maps can only be as right as the simulated curves. If the simulation has a bias, the maps inherit it in a systematic way, and the matching step has no way of flagging it. The curve still matches well; it's just the wrong curve.
 
 BOLD swim suite is the tool that makes those simulated curves.
 
@@ -26,7 +26,7 @@ BOLD swim suite is the tool that makes those simulated curves.
 
 Here's what a single simulation looks like, from the toolbox paper.
 
-On the left is a virtual voxel: a slice through randomly oriented vessels, like a capillary bed.
+On the left is a virtual voxel: a 2D slice with vessels crossing it, like a capillary bed. Each vessel gets its own random field direction, which stands in for vessels pointing every which way.
 
 In the middle is the magnetic field around them. Deoxygenated blood is slightly magnetic, so each vessel bends the field nearby. That's the red and blue pattern.
 
@@ -54,7 +54,7 @@ Now the two papers Jack keeps pointing me to. The first one is the toolbox paper
 
 Their point is that BOLD simulations used to live in separate codes that mostly weren't shared. They put the common methods into one Python package, free on GitHub, with tutorial notebooks.
 
-They also measured what each choice costs. 2D is faster, 3D is more realistic. A grid voxel runs faster per step but takes about a hundred times more memory. The FFT field works for any shape but isn't exact. And grid diffusion gives a clean, noise-free answer, but gets very memory hungry for big vessels. The figure at the bottom shows how big these costs get: a 3D grid voxel took about an hour to build and fourteen and a half gigabytes of memory, versus a tenth of a gigabyte for the continuous one.
+They also measured what each choice costs. 2D is faster, 3D is more realistic. A grid voxel runs faster per step, but in 3D it takes about a hundred times more memory. The FFT field works for any shape but isn't exact. And grid diffusion gives a clean, noise-free answer, but gets very memory hungry for big vessels. The figure at the bottom shows how big these costs get: a 3D grid voxel took about an hour to build and fourteen and a half gigabytes of memory, versus a tenth of a gigabyte for the continuous one.
 
 Their general advice: use the exact field when you can, and keep enough grid points across each vessel.
 
@@ -62,9 +62,9 @@ Their general advice: use the exact field when you can, and keep enough grid poi
 
 The second paper uses the toolbox to ask the question that matters for us: does the recipe change the answer?
 
-They took eight approaches people have published and ran all of them with the same settings: 3 tesla, 2 percent blood volume, fifteen vessel sizes from 1 to 60 microns, and ten random voxels each.
+They took eight approaches people have published and ran all of them with the same settings: 3 tesla, 2 percent blood volume, fifteen vessel sizes from 1 to 60 microns, and ten random voxels.
 
-The figure shows the geometries. From left: a single vessel in 2D, many vessels in 2D, either each with its own field direction or with a three-direction average, random cylinders in 3D, and a realistic vessel network.
+The figure shows the geometries. From left: a single vessel in 2D, many vessels in 2D, either each with its own field direction or with a three-direction average, random cylinders in 3D, and a simplified vessel network with branching capillaries.
 
 The reference is 3D cylinders with the exact field and Monte Carlo diffusion.
 
@@ -86,11 +86,11 @@ Why does 3B0 do so badly? I made these two field maps to see it for myself. Same
 
 On the left, each vessel gets its own field direction, which is what happens in a real brain, since vessels point every which way. The patterns point in different directions, and the blood inside each vessel sits at a different field.
 
-On the right is 3B0. It averages the field over three directions to save time. Every pattern now points the same way, and the blood inside every vessel ends up near zero.
+On the right is 3B0. It's a 2D shortcut that averages the field over three directions to mimic vessels pointing every which way. Every pattern now points the same way, and the blood in every vessel sits at the same offset, close to zero.
 
-If the blood sits at zero offset, the blood signal hardly decays. In my runs it decays at about 2 per second, versus about 42 in the 3D reference. Berman shows the same thing.
+If all the blood sits at the same offset, there's no spread between vessels to dephase, so the blood signal hardly decays. In my runs it decays at 2 to 3 per second, versus about 42 in the 3D reference. Berman shows the same thing.
 
-That sounds small, because blood is only a few percent of the voxel. But blood decays so fast that it carries about a quarter of the gradient-echo decay. So the whole signal is off, and so is anything you fit from it.
+That sounds small, because blood is only a few percent of the voxel. But blood normally decays so fast that it carries at least a quarter of the gradient-echo decay. Berman found about 25 percent at 2 percent blood volume, and in my runs it's over half for capillary-sized vessels. So the whole signal is off, and so is anything you fit from it.
 
 ## Slide 9 · Why this matters for our dictionaries
 
@@ -100,9 +100,9 @@ MrVox, the Matlab toolbox, uses exactly that 3B0 shortcut, together with an FFT 
 
 And it's not only Berman saying this. People who work on MrVox compared 3B0 with a dictionary from realistic vessel networks in rats, and 3B0 overestimated vessel radius by 14 to 19 percent.
 
-Berman's recommendation is to use the 3D reference, or the 2D version where each vessel gets its own field direction, because it matched the reference almost exactly.
+Berman's conclusion is that the 3D reference is a good default, and the 2D version where each vessel gets its own field direction reproduced it almost exactly. They say 3B0 should be used with caution.
 
-What nobody has checked yet is our case: the 38-echo GESFIDE signal, and what 3B0 does to blood volume and oxygenation, not just radius. That's the gap I think I can work on.
+So what's missing? Berman only tested radius, but with a known answer. Delphin's group did use GESFIDE and estimated all three parameters, but in rats, where you don't know the true values. A known-answer test of 3B0 on our 38-echo GESFIDE, for blood volume, radius and oxygenation together, hasn't been done. That's the gap I think I can work on.
 
 ## Slide 10 · What I ran: the install, the examples and Jack's notebook
 
@@ -112,7 +112,7 @@ The toolbox only works with Python 3.10, so I made a separate environment for it
 
 The runs are seeded, so the numbers should repeat exactly, and mine matched Jack's. A few examples on the right: the field next to a vessel matches the textbook formula. Water spreads 39.9 square microns in 20 milliseconds, against 40 from theory. The GESFIDE fit on the reference voxel gives R2 of 14.8 and R2 prime of 1.81 per second.
 
-And the last row is a preview of the problem. In Jack's head-to-head on our sequence, the blood part of the signal from the MrVox-style 3B0 voxel is 94 percent off from the 3D reference, versus about 11 percent for the 2D version with its own field direction per vessel.
+And the last row is a preview of the problem. In Jack's head-to-head on our sequence, one voxel each, the blood part of the signal from the MrVox-like 3B0 voxel has an NRMSD of 94 percent against the 3D reference. That's Berman's error measure, the RMS difference relative to the reference's spread. The 2D version with its own field direction per vessel is at about 11 percent.
 
 ## Slide 11 · Playing with it: what each knob does to our signal
 
@@ -122,7 +122,9 @@ On the left I change oxygenation. Less oxygen means more magnetic blood, so the 
 
 On the right I change vessel size, and the shape changes. Big vessels behave like a static field, so the 180 pulse brings a lot of signal back at the spin echo. Small vessels don't refocus, because water diffuses past them too fast. That difference in shape is what lets fingerprinting tell vessel sizes apart.
 
-A nice detail: I only ran one simulation per vessel size. Oxygenation just scales the field, so one run gives every SO2 for free. Jack's notebook shows that trick, and it makes the dictionary much cheaper.
+A nice detail: I only ran one simulation per vessel size and voxel. Oxygenation just scales the field, so one run gives every SO2 for free. Jack's notebook shows that trick, and it makes the dictionary much cheaper.
+
+If someone asks why most curves peak a bit before 100 milliseconds: diffusion causes some loss that the 180 can't undo, and that loss keeps growing, so the maximum shifts earlier. The 30 micron curve, where diffusion matters least, peaks closest to 100.
 
 ## Slide 12 · Berman's result holds on our sequence
 
@@ -132,7 +134,7 @@ On the left is the gradient-echo part, at about 30 milliseconds. The 3D referenc
 
 On the right is the spin echo, at 100 milliseconds. It peaks around capillary size, which is the classic result, and here the three are much closer, with 3B0 a bit low for small vessels.
 
-So the problem is in the gradient-echo part, which is exactly the part GESFIDE samples in the first 50 milliseconds. Same pattern as Berman's Figure 8C, now with our timing.
+So the problem is in the reversible part of the decay, R2 prime, which weights every GESFIDE echo except the ones near the 100 millisecond spin echo. Same pattern as Berman's Figure 8C, now with our timing.
 
 ## Slide 13 · First try: which dictionary gets the radius right?
 
@@ -144,7 +146,7 @@ On the left, a 3D dictionary built from new random voxels: 10 of 12 right, and t
 
 That's Berman's finding again, but on our sequence, with oxygenation estimated at the same time. Adding noise at an SNR of 100 didn't change the picture.
 
-To be clear, this is a toy: fixed blood volume, no T2, and only two voxels per entry.
+To be clear, this is a toy: fixed blood volume, no T2, and only two voxels per entry. It also uses the total signal, blood plus tissue. Most of the 3B0 error lives in the blood signal; in my runs the tissue-only decay rates were only 3 to 16 percent low. So whether our dictionary includes blood matters a lot, and that's one of my questions at the end.
 
 ## Slide 14 · The same matches also shift oxygenation
 
@@ -152,7 +154,7 @@ Because the matching picks radius and oxygenation together, the wrong radius dra
 
 The true SO2 here is 60 percent. The two good recipes stay within about 7 points for vessels of 2 microns and up, and mostly within 5.
 
-3B0, in red, reads small vessels as up to 20 points too oxygenated, and large vessels 9 to 12 points too low. That's a big error for a number we'd want to compare between patients.
+3B0, in red, reads small vessels as up to 20 points too oxygenated, and large vessels 8 to 12 points too low. That's a big error for a number we'd want to compare between patients.
 
 One honest caveat: even the 3D control comes out a few points low. I think that's noise from using only two random voxels per entry, since Berman used ten. That's one of the first things I'd check once I can run bigger jobs on the cluster.
 
@@ -160,7 +162,7 @@ One honest caveat: even the 3D control comes out a few points low. I think that'
 
 Everything so far ran on a laptop. A real dictionary is bigger, and that's where the cluster comes in.
 
-One 3D simulation takes about 35 seconds on one core. A first real dictionary, say 25 radii, 15 blood volumes and 3 random voxels each, is about 1,100 runs. That's 10 to 12 hours on one core, but each run is independent, so as 30 jobs side by side on the cluster it takes well under an hour.
+One 3D simulation takes about 35 seconds on one core at 3 percent blood volume; more vessels take longer. A first real dictionary, say 25 radii, 15 blood volumes and 3 random voxels each, is about 1,100 runs. That's 10 to 12 hours on one core if every entry cost the same, and more once the high blood volumes are in. But each run is independent, so as 30 jobs side by side on the cluster it takes about an hour.
 
 Two things make this manageable. Oxygenation is free, because one run can be rescaled to any SO2. And each run uses one core, so it maps onto array jobs the same way the MrVox jobs are already split.
 

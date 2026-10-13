@@ -4,9 +4,9 @@
 <table style="font-size:28px;color:#1B1B1F">
 <tr><th style="width:22%;text-align:left">Choice</th><th style="width:44%;text-align:left">Trade-off</th><th style="width:34%;text-align:left">Their advice</th></tr>
 <tr><td>2D or 3D</td><td>2D is faster; 3D is more realistic and the only option for vessel networks</td><td>2D is fine for randomly oriented cylinders</td></tr>
-<tr><td>Continuous or grid</td><td>A grid voxel is faster per step but uses about 100× more memory</td><td>At least 6 grid points across the smallest vessel</td></tr>
+<tr><td>Continuous or grid</td><td>A grid voxel is faster per step; in 3D it uses about 100× more memory</td><td>At least 6 grid points across the smallest vessel</td></tr>
 <tr><td>Analytical or FFT field</td><td>FFT handles any vessel shape but is approximate</td><td>Analytical whenever possible</td></tr>
-<tr><td>Monte Carlo or grid diffusion</td><td>Grid diffusion has no noise, but memory grows with vessel size, from 100 MB to tens of GB</td><td>Check the grid size and memory before using grid diffusion for large vessels</td></tr>
+<tr><td>Monte Carlo or grid diffusion</td><td>Grid diffusion has no noise, but memory grows with vessel size, from 100 MB to tens of GB</td><td>Grid diffusion gives the same answer every run; Monte Carlo needs enough spins</td></tr>
 </table>
 <div style="display:flex;flex-direction:row;gap:48px;align-items:center">
 <img src="/_blob/03e73a4a99887190227836857a12e797" alt="Chaussé et al. Figure 8: run time and peak memory for 3D and 2D, continuous and gridded voxels with 400 cylinders. The 3D grid voxel took about 3,400 s to set up and 14.5 GB of memory; the others used about 0.1 GB" style="width:900px;height:293px;object-fit:contain;background:#FFFFFF">
@@ -18,7 +18,7 @@
 
 Their point is that BOLD simulations used to live in separate codes that mostly weren't shared. They put the common methods into one Python package, free on GitHub, with tutorial notebooks.
 
-They also measured what each choice costs. 2D is faster, 3D is more realistic. A grid voxel runs faster per step but takes about a hundred times more memory. The FFT field works for any shape but isn't exact. And grid diffusion gives a clean, noise-free answer, but gets very memory hungry for big vessels. The figure at the bottom shows how big these costs get: a 3D grid voxel took about an hour to build and fourteen and a half gigabytes of memory, versus a tenth of a gigabyte for the continuous one.
+They also measured what each choice costs. 2D is faster, 3D is more realistic. A grid voxel runs faster per step, but in 3D it takes about a hundred times more memory. The FFT field works for any shape but isn't exact. And grid diffusion gives a clean, noise-free answer, but gets very memory hungry for big vessels. The figure at the bottom shows how big these costs get: a 3D grid voxel took about an hour to build and fourteen and a half gigabytes of memory, versus a tenth of a gigabyte for the continuous one.
 
 Their general advice: use the exact field when you can, and keep enough grid points across each vessel.</aside>
 </section>

@@ -11,7 +11,7 @@
 <div style="flex:1;align-self:stretch;background:#F1F2F3;border-radius:4px;padding:32px;display:flex;flex-direction:column;gap:12px"><h3 style="font-size:36px;font-weight:700;line-height:1.2">Maps</h3><p style="font-size:28px;line-height:1.3;color:#4A4E55">Blood volume, vessel radius and oxygenation</p></div>
 </div>
 <div style="flex:1"></div>
-<p style="font-size:40px;line-height:1.3;color:#1B1B1F;width:1500px">The maps can only be as right as the simulated curves. If the simulation is off, every voxel is off in the same direction, and the matching step will not tell us.</p>
+<p style="font-size:40px;line-height:1.3;color:#1B1B1F;width:1500px">The maps can only be as right as the simulated curves. If the simulation is biased, the maps inherit that bias systematically, and a good match will not reveal it.</p>
 <p style="position:absolute;left:120px;bottom:56px;width:1400px;font-size:24px;color:#6B6F76">MR vascular fingerprinting (MRvF): Christen et al., NeuroImage 2014; Lin, Lu &amp; Fan, Magn Reson Med 2025</p>
 <p style="position:absolute;right:120px;bottom:56px;width:120px;font-size:24px;color:#6B6F76;text-align:right">2</p>
 <aside>First, why we need a simulator at all.
@@ -20,7 +20,7 @@ With vascular fingerprinting, the scanner gives us a decay curve for each voxel,
 
 So we build a dictionary: simulated curves for every combination of oxygenation, blood volume and vessel radius. Then we match each measured curve to the closest simulated one and read off the parameters. That gives us the maps.
 
-The key point is on the bottom. The maps can only be as right as the simulated curves. If the simulation has a bias, every voxel gets the same bias, and the matching step has no way of flagging it.
+The key point is on the bottom. The maps can only be as right as the simulated curves. If the simulation has a bias, the maps inherit it in a systematic way, and the matching step has no way of flagging it. The curve still matches well; it's just the wrong curve.
 
 BOLD swim suite is the tool that makes those simulated curves.</aside>
 </section>

@@ -46,7 +46,7 @@ The GIFs, MP4 copies and the small dictionary (`mrvf_dict.npz`) are in `journal-
 
 Slides for Dr. Fan on what BOLDsωimsuite does, the two papers behind it, what I ran, and how it becomes the rotation project. Papers: Chaussé, Berman & Chen, *Imaging Neuroscience* 2025 (doi:10.1162/imag_a_00519) and Berman, Chaussé, Hartung et al., *Imaging Neuroscience* 2026 (doi:10.1162/IMAG.a.1247).
 
-- **Deck (18 slides, about 17 min):** https://claude.ai/artifact/G5HfX6UUMbQXMXH3u541xn. The speaker notes hold the script. Private until shared from the deck's Share menu.
+- **Deck (18 slides, about 18 min):** https://claude.ai/artifact/G5HfX6UUMbQXMXH3u541xn. The speaker notes hold the script. Private until shared from the deck's Share menu.
 - **Rotation guide (doc):** https://claude.ai/code/artifact/f628293b-a5d4-4ce6-b50d-1800cd3c4d02. What the toolbox is, the two papers, how to check your notebook run, the cluster, the project in three parts with a timeline to Dec 4, things to try with expected results, a glossary, and questions for Jack and Dr. Fan.
 
 | Path | What it is |

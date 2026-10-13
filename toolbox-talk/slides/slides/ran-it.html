@@ -17,7 +17,7 @@
 <tr><td>3D voxel: vessels, blood volume</td><td style="text-align:right">150, 0.0302</td></tr>
 <tr><td>Water spread after 20 ms</td><td style="text-align:right">39.91 µm² (theory 40)</td></tr>
 <tr><td>GESFIDE fit: R₂ and R₂′</td><td style="text-align:right">14.8 and 1.81 s⁻¹</td></tr>
-<tr><td>Blood-signal error vs 3D: 2D own direction, 3B0</td><td style="text-align:right">10.6%, 93.9%</td></tr>
+<tr><td>Blood-signal NRMSD vs 3D: 2D own direction, MrVox-like 3B0</td><td style="text-align:right">10.6%, 93.9%</td></tr>
 </table>
 </div>
 </div>
@@ -29,5 +29,5 @@ The toolbox only works with Python 3.10, so I made a separate environment for it
 
 The runs are seeded, so the numbers should repeat exactly, and mine matched Jack's. A few examples on the right: the field next to a vessel matches the textbook formula. Water spreads 39.9 square microns in 20 milliseconds, against 40 from theory. The GESFIDE fit on the reference voxel gives R2 of 14.8 and R2 prime of 1.81 per second.
 
-And the last row is a preview of the problem. In Jack's head-to-head on our sequence, the blood part of the signal from the MrVox-style 3B0 voxel is 94 percent off from the 3D reference, versus about 11 percent for the 2D version with its own field direction per vessel.</aside>
+And the last row is a preview of the problem. In Jack's head-to-head on our sequence, one voxel each, the blood part of the signal from the MrVox-like 3B0 voxel has an NRMSD of 94 percent against the 3D reference. That's Berman's error measure, the RMS difference relative to the reference's spread. The 2D version with its own field direction per vessel is at about 11 percent.</aside>
 </section>
