@@ -47,6 +47,7 @@ The GIFs, MP4 copies and the small dictionary (`mrvf_dict.npz`) are in `journal-
 Slides for Dr. Fan on what BOLDsωimsuite does, the two papers behind it, what I ran, and how it becomes the rotation project. Papers: Chaussé, Berman & Chen, *Imaging Neuroscience* 2025 (doi:10.1162/imag_a_00519) and Berman, Chaussé, Hartung et al., *Imaging Neuroscience* 2026 (doi:10.1162/IMAG.a.1247).
 
 - **Deck (18 slides, about 18 min):** https://claude.ai/artifact/G5HfX6UUMbQXMXH3u541xn. The speaker notes hold the script. Private until shared from the deck's Share menu.
+- **Step-by-step guide to run the simulations and make the slide figures (doc):** https://claude.ai/code/artifact/8fdf4609-edaf-484e-8147-b8f57a35ea24. Folders, Jupyter steps, expected output for every cell, checks, troubleshooting, and what to say.
 - **Rotation guide (doc):** https://claude.ai/code/artifact/f628293b-a5d4-4ce6-b50d-1800cd3c4d02. What the toolbox is, the two papers, how to check your notebook run, the cluster, the project in three parts with a timeline to Dec 4, things to try with expected results, a glossary, and questions for Jack and Dr. Fan.
 
 | Path | What it is |
@@ -55,6 +56,7 @@ Slides for Dr. Fan on what BOLDsωimsuite does, the two papers behind it, what I
 | `toolbox-talk/slides/` | Slide sources (`deck.json`, one HTML file per slide); `assets.json` maps the `/_blob/...` ids to the figures below |
 | `toolbox-talk/figures/papers/` | Figures cropped from the two papers |
 | `toolbox-talk/figures/my-runs/` | Figures from my BOLDsωimsuite runs, plus `summary.json` with the numbers behind them |
-| `toolbox-talk/playground/` | The scripts that made them (`check_install.py`, `run_play.py`, `analyze_play.py`); see its README |
+| `toolbox-talk/bold-slide-figures/` | The notebook that makes them (`make_slide_figures.ipynb`) with its helper scripts and the reference numbers; see its README |
+| `toolbox-talk/bold-slide-figures.zip` | The same folder zipped, to put in your Research Work Fan Rotation folder |
 
 The "my runs" figures are a toy version of the project on the lab's 38-echo GESFIDE timing: 3D-ANA-MC reference signals matched against 3D, 2D (own field direction per vessel) and 2D 3B0 (MrVox-style) dictionaries, at one blood volume, T2 off, 2 voxels × 10,000 spins per entry. The 3B0 dictionary got 3 of 12 radii right and shifted SO2 by up to 20 points; the other two missed only by one grid step.

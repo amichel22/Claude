@@ -1,6 +1,6 @@
 """Analyse the playground runs and draw the figures for the talk.
 
-Usage: python analyze_play.py RUN_DIR FIG_DIR
+Usage: python analyze_play.py [RUN_DIR] [FIG_DIR]   (defaults: out, figs)
 """
 import glob
 import json
@@ -15,13 +15,17 @@ import matplotlib.pyplot as plt
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import bss_common as bc
 
-RUN_DIR, FIG_DIR = sys.argv[1], sys.argv[2]
+RUN_DIR = sys.argv[1] if len(sys.argv) > 1 else 'out'
+FIG_DIR = sys.argv[2] if len(sys.argv) > 2 else 'figs'
+_n_runs = len(glob.glob(os.path.join(RUN_DIR, '*.npz')))
+if _n_runs < 96:
+    sys.exit(f'Found {_n_runs} of 96 runs in "{RUN_DIR}". Run (or finish) python run_play.py first.')
 os.makedirs(FIG_DIR, exist_ok=True)
 
 INK, MUTED, HAIR = '#1B1B1F', '#5B5F66', '#D9DADC'
 RED, BLUE, GRAY, GREEN = '#A8322D', '#1F4E79', '#8A8F96', '#3D7A4F'
 plt.rcParams.update({
-    'font.family': 'serif', 'font.serif': ['Liberation Serif'], 'mathtext.fontset': 'stix',
+    'font.family': 'serif', 'font.serif': ['Liberation Serif', 'Times New Roman', 'Times', 'DejaVu Serif'], 'mathtext.fontset': 'stix',
     'font.size': 20, 'axes.edgecolor': MUTED, 'axes.linewidth': 1.0, 'axes.labelcolor': INK,
     'xtick.color': MUTED, 'ytick.color': MUTED, 'xtick.labelcolor': INK, 'ytick.labelcolor': INK,
     'xtick.labelsize': 18, 'ytick.labelsize': 18, 'axes.labelsize': 21, 'axes.titlesize': 22,
@@ -228,4 +232,12 @@ for key in ('random', '3b0'):
     summary.setdefault('iv_field_nT_p10_p50_p90', {})[key] = [round(float(x), 1) for x in np.percentile(v, [10, 50, 90])]
 with open(os.path.join(FIG_DIR, 'summary.json'), 'w') as f:
     json.dump(summary, f, indent=1)
-print(json.dumps({k: v for k, v in summary.items() if k not in ('boxerman',)}, indent=1))
+names = list(results)
+right = [len(radii) - summary[n]['radius_wrong_at_so2_0.6'] for n in names]
+print(f'Saved 5 figures and summary.json in the folder "{FIG_DIR}":')
+print(f'  fieldmaps.png         slide 8   field maps, own direction per vessel vs 3B0')
+print(f'  knobs.png             slide 11  GESFIDE signal as SO2 and vessel radius change')
+print(f'  boxerman_gesfide.png  slide 12  decay rate vs vessel radius, 3D vs 2D vs 3B0')
+print(f'  fp_radius.png         slide 13  radii right at SO2 60%: 3D {right[0]}/12, 2D own direction {right[1]}/12, 3B0 {right[2]}/12')
+print(f'  fp_so2.png            slide 14  SO2 error vs radius for the same matches')
+print('Next: python compare_to_mine.py')

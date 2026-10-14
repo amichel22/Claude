@@ -5,7 +5,7 @@ Approaches
   random : 2D, gridded field, each vessel with its own random B0 direction (Berman's best 2D approach)
   3b0    : 2D, same geometry and grid, MrVox-style field averaged over three B0 directions
 
-Usage: python run_play.py OUT_DIR [N_WORKERS]
+Usage: python run_play.py [OUT_DIR] [N_WORKERS]   (defaults: out, up to 4 cores)
 On ideacluster the same job list maps onto a PBS array (one job per task).
 """
 import os
@@ -16,7 +16,7 @@ os.environ.setdefault('OMP_NUM_THREADS', '1')
 os.environ.setdefault('NUMBA_NUM_THREADS', '1')
 
 import numpy as np
-from multiprocessing import Pool
+import multiprocessing
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import bss_common as bc
@@ -61,13 +61,19 @@ def _run(args):
 
 
 if __name__ == '__main__':
-    out_dir = sys.argv[1]
-    workers = int(sys.argv[2]) if len(sys.argv) > 2 else 4
+    out_dir = sys.argv[1] if len(sys.argv) > 1 else 'out'
+    workers = int(sys.argv[2]) if len(sys.argv) > 2 else min(4, os.cpu_count() or 1)
     os.makedirs(out_dir, exist_ok=True)
     todo = [(j, out_dir) for j in jobs()]
     # longest jobs first
     todo.sort(key=lambda x: (x[0][0] != '3d', -x[0][1]))
+    print(f'Running {len(todo)} simulations on {workers} cores into the folder "{out_dir}".', flush=True)
+    print('The 3D runs come first and take about 30-40 s each; the 2D runs at the end take a few seconds.', flush=True)
+    print('Runs that are already in the folder are skipped, so you can stop (Ctrl+C) and start again.', flush=True)
     t0 = time.time()
-    with Pool(workers) as pool:
+    # 'spawn' is how Mac and Windows start worker processes; use it everywhere so every computer behaves the same
+    with multiprocessing.get_context('spawn').Pool(workers) as pool:
         for i, (p, dt) in enumerate(pool.imap_unordered(_run, todo), 1):
-            print(f'[{i}/{len(todo)}] {os.path.basename(p)} {dt:.0f} s (elapsed {time.time() - t0:.0f} s)', flush=True)
+            note = 'already done, skipped' if dt == 0 else f'{dt:.0f} s'
+            print(f'[{i}/{len(todo)}] {os.path.basename(p)} {note} (elapsed {time.time() - t0:.0f} s)', flush=True)
+    print(f'All {len(todo)} runs done in {(time.time() - t0) / 60:.1f} min. Next: python analyze_play.py', flush=True)
