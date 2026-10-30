@@ -8,20 +8,22 @@
 </div>
 <div style="flex:1;display:flex;flex-direction:column;gap:10px">
 <p style="font-size:44px;font-weight:700;color:#A8322D">MrVox</p>
-<p style="font-size:30px;line-height:1.3">2D voxel, FFT field, grid diffusion, and a shortcut called 3B0. The older Matlab tool.</p>
+<p style="font-size:30px;line-height:1.3">2D-GRD-CYL-FFT-DD plus 3B0: a 2D grid, the field by FFT rather than the exact formula, grid diffusion, and the 3B0 shortcut. The older Matlab tool.</p>
 </div>
 </div>
 <p style="position:absolute;left:120px;bottom:56px;width:1400px;font-size:24px;color:#6B6F76">Chaussé, Berman &amp; Chen, Imaging Neuroscience 2025, Fig. 1 and Section 5.4</p>
-<p style="position:absolute;right:120px;bottom:56px;width:120px;font-size:24px;color:#6B6F76;text-align:right">4</p>
+<p style="position:absolute;right:120px;bottom:56px;width:120px;font-size:24px;color:#6B6F76;text-align:right">5</p>
 <aside>This is the figure that made the toolbox click for me. Every simulation is four choices, left to right.
 
 Geometry: is the voxel 2D or 3D, and are the vessels straight cylinders, spheres, or a realistic vessel network.
 
-The field: do you use the exact formula for a cylinder, or a Fourier transform on a grid, which works for any shape but is approximate.
+The field: do you use the exact formula for a cylinder, which is the analytical option, or a Fourier transform on a grid, the FFT option, which works for any shape but is approximate.
 
 Diffusion: do you track thousands of random water molecules, which is Monte Carlo, or blur the magnetization on a grid, which is deterministic diffusion.
 
 And the signal: which pulse sequence you play, for us the 38-echo GESFIDE.
 
-The method name just spells out the choices. 3D-ANA-MC means 3D, analytical field, Monte Carlo. MrVox, the older Matlab tool, is one fixed combination: 2D, FFT, grid diffusion, plus a shortcut called 3B0 that I'll come back to, because it turns out to matter.</aside>
+The method name just spells out the choices. 3D-ANA-MC means 3D, analytical field, Monte Carlo. That's Berman's reference.
+
+And to answer your question from last week directly: MrVox is the FFT kind. In this naming it's 2D-GRD-CYL-FFT-DD: a 2D grid, cylinders, the field by FFT, and grid diffusion, plus the 3B0 shortcut, which averages the field over three B0 directions. That last part is the one that turns out to matter.</aside>
 </section>

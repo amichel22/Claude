@@ -4,11 +4,11 @@
   "lists": "css",
   "title": "BOLDsωimsuite Toolbox Talk",
   "cover": "cover",
-  "order": ["cover", "why-sim", "what-sim", "four-choices", "paper1", "paper2-setup", "paper2-result", "why-3b0", "for-us", "ran-it", "knobs", "vessel-size", "pilot", "pilot-so2", "cluster", "plan", "asks", "end"],
+  "order": ["cover", "follow-up", "why-sim", "what-sim", "four-choices", "paper1", "paper2-setup", "why-compare", "read-fig4", "paper2-result", "fig6-colors", "why-3b0", "for-us", "ran-it", "knobs", "vessel-size", "pilot", "pilot-so2", "tissue-only", "cluster", "plan", "asks", "end"],
   "sections": {
-    "s1": { "description": "Why the lab needs a BOLD simulator and what one simulation does", "start": "cover" },
-    "s2": { "description": "The two papers: the toolbox (Chaussé 2025) and the comparison of recipes (Berman 2026)", "start": "paper1" },
-    "s3": { "description": "What I ran and what I found playing with it", "start": "ran-it" },
+    "s1": { "description": "Follow-up from last week, why the lab needs a BOLD simulator and what one simulation does", "start": "cover" },
+    "s2": { "description": "The two papers: the toolbox (Chaussé 2025) and the comparison of recipes (Berman 2026), with how to read its figures", "start": "paper1" },
+    "s3": { "description": "What I ran and what I found playing with it, including the tissue-only test", "start": "ran-it" },
     "s4": { "description": "Scaling up on the cluster and the rotation plan", "start": "cluster" }
   },
   "faces": {

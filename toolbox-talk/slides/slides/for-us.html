@@ -11,10 +11,12 @@
 <p style="font-size:30px;line-height:1.35">Berman tested only vessel radius, against a known answer. Delphin's group compared dictionaries on GESFIDE in rats, where the true values are unknown. A known-answer test of 3B0 for CBV, R and SO₂ on our 38-echo GESFIDE is still missing.</p>
 </div>
 <p style="position:absolute;left:120px;bottom:56px;width:1400px;font-size:24px;color:#6B6F76">Berman et al. 2026, Sections 5.1.5, 6 · Chaussé et al. 2025, Section 5.4 · Delphin et al. 2022, 2024</p>
-<p style="position:absolute;right:120px;bottom:56px;width:120px;font-size:24px;color:#6B6F76;text-align:right">9</p>
+<p style="position:absolute;right:120px;bottom:56px;width:120px;font-size:24px;color:#6B6F76;text-align:right">13</p>
 <aside>So why does this matter for us?
 
 MrVox, the Matlab toolbox, uses exactly that 3B0 shortcut, together with an FFT field and grid diffusion. It made the dictionary for the first vascular fingerprinting paper, Christen 2014, and several after it. As far as I understand, our current dictionaries come from MrVox too. Jack, correct me if that's wrong.
+
+To be precise about what Berman tested: their 3B0 version used the exact field and Monte Carlo, so it isolates the averaging step. Separately, the FFT recipes missed only two radii each, and grid diffusion alone got all fifteen right. How the three combine inside MrVox itself wasn't tested in these papers. Chaussé mentions an earlier conference abstract from Berman's group that compared MrVox's 3B0 method with other methods and found substantial differences, but I haven't read it.
 
 And it's not only Berman saying this. People who work on MrVox compared 3B0 with a dictionary from realistic vessel networks in rats, and 3B0 overestimated vessel radius by 14 to 19 percent.
 

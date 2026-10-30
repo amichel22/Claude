@@ -18,12 +18,14 @@
 </div>
 </div>
 <p style="position:absolute;left:120px;bottom:56px;width:1400px;font-size:24px;color:#6B6F76">Berman, Chaussé, Hartung et al., Imaging Neuroscience 2026, Figs. 4 and 5, Section 4.1</p>
-<p style="position:absolute;right:120px;bottom:56px;width:120px;font-size:24px;color:#6B6F76;text-align:right">7</p>
-<aside>Here's the fingerprinting result. Each small panel uses one approach as the dictionary. The horizontal axis is the true radius, the vertical axis is the radius the matching picked, and the red squares are the estimates. On the black line means it got it right.
+<p style="position:absolute;right:120px;bottom:56px;width:120px;font-size:24px;color:#6B6F76;text-align:right">10</p>
+<aside>Now the full figure, read the same way. Each panel uses a different recipe to build the dictionary; the test signals are always the same 3D reference signals. The 2D recipes are on top, the 3D ones on the bottom.
 
-Most approaches are on the line. The 2D version with a random field direction per vessel got all fifteen right, and so did grid diffusion. The FFT approaches missed two each.
+The bottom-left panel, 3D-ANA-MC, is the reference matched against its own approach, so a perfect result is expected. It's a check that the matching works, not a finding.
 
-Two shortcuts did badly. The single-vessel approach missed seven, with a mean error of 13 percent. And 3B0, top right, missed twelve of fifteen, with a mean error of 54 percent and a worst case of 233 percent.
+Most approaches are on the line. The 2D version with a random field direction per vessel got all fifteen right, and so did grid diffusion and the gridded 3D version. The two FFT approaches missed two each, mostly at the largest radii, where the curves are hardest to tell apart.
 
-So the recipe really can change the vessel size you report.</aside>
+Two shortcuts did badly. The single-vessel approach missed seven, with a mean error of 13 percent. And 3B0, top right, missed twelve of fifteen, every one too large, with a mean error of 54 percent and a worst case of 233 percent. With only fifteen sizes in the dictionary, even one step off is a 17 to 50 percent error, which is why these percentages look big.
+
+So the recipe alone can change the vessel size you report. And this is an idealized test: no noise, and only the radius changes. In real data, a bias like this would be harder to notice, not easier.</aside>
 </section>

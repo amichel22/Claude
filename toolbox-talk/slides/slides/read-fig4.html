@@ -1,0 +1,25 @@
+<section id="read-fig4" data-transition="fade" style="background:#FCFCFB;color:#1B1B1F;font-family:Tinos, 'Times New Roman', serif;padding:96px 120px 150px;display:flex;flex-direction:column;gap:36px">
+<h2 style="font-size:56px;font-weight:700;line-height:1.1;color:#1B1B1F">How to read Berman's Figure 4</h2>
+<img src="/_blob/c796187dee77754d0ebd87b781631b40" alt="Two panels from Berman et al. Figure 4 with numbered labels. 1: the y axis is the radius of each dictionary entry, labelled estimated radius. 2: the x axis is the true radius of the test signal, simulated with the 3D reference. 3: colour shows how alike the two decay curves are, R squared, light is almost identical. 4: the red square is the best match in each column; its height is the reported radius. 5: the black line is where reported radius equals true radius. 6: in the 3B0 dictionary panel, squares sit above the line, so vessels are reported as larger than they are, 12 of 15 wrong" style="width:1600px;height:724px;object-fit:contain;background:#FFFFFF">
+<p style="position:absolute;left:120px;bottom:56px;width:1400px;font-size:24px;color:#6B6F76">Panels from Berman et al., Imaging Neuroscience 2026, Fig. 4, with my labels; method in Section 3.3.1</p>
+<p style="position:absolute;right:120px;bottom:56px;width:120px;font-size:24px;color:#6B6F76;text-align:right">9</p>
+<aside>Here's how to read Berman's Figure 4. I've taken two of its eight panels and numbered the parts.
+
+On the left is a dictionary that works, 2D-ANA-MC.
+
+Number 2, the x axis, is the true radius of the test signal. The test signals were simulated with the 3D reference, so for every column we know the right answer.
+
+Number 1, the y axis, is the radius of each entry in the dictionary. The figure labels it "estimated radius", but the caption says it's the dictionary radius used for comparison. So each column is one test signal compared with every entry in the dictionary.
+
+Number 3, the colour, is how alike the two decay curves are. They used R squared, the same measure Christen used, after dividing each curve by its average over time, so only the shape counts. Near white means almost identical; dark navy means 0.7 or less.
+
+Number 4, the red square, is the best match in each column, the entry with the highest R squared. Its height is the radius the matching reports.
+
+Number 5, the black line, is where the reported radius equals the true radius. Squares on the line are right answers.
+
+Notice that the light band is narrow for the smallest vessels and gets wide from about 4 microns up. For bigger vessels, neighbouring sizes give very similar curves; Berman reports R squared above 0.99 between neighbours at the large radii. So large vessels are harder to tell apart, and that's where small errors flip the pick.
+
+On the right is the 3B0 dictionary. Most squares sit above the line, and every miss is too large: 12 of 15 radii wrong.
+
+One detail: Berman's test signals were a simple spin echo, not our GESFIDE. Running this kind of test on our sequence is what my own simulations add.</aside>
+</section>

@@ -1,0 +1,18 @@
+<section id="tissue-only" data-transition="fade" style="background:#FCFCFB;color:#1B1B1F;font-family:Tinos, 'Times New Roman', serif;padding:96px 120px 150px;display:flex;flex-direction:column;gap:36px">
+<h2 style="font-size:56px;font-weight:700;line-height:1.1;color:#1B1B1F">Without the blood signal, 3B0 mostly recovers</h2>
+<img src="/_blob/e7e02d0b49ff03ed9838e51bfe5fcf5a" alt="Estimated against true radius for the 2D own-direction and 2D 3B0 dictionaries. Left, blood plus tissue signal: own direction 8 of 12 right, 3B0 3 of 12 right with small vessels estimated at 7 to 15 micrometers. Right, tissue signal only: own direction 11 of 12 right, 3B0 10 of 12 right, all on or next to the line" style="width:1560px;height:604px;object-fit:contain;background:#FFFFFF">
+<p style="font-size:26px;line-height:1.35;color:#4A4E55;width:1600px">The same 96 simulations as slides 17 and 18, matched twice. With tissue only, 3B0's SO₂ errors fall to 4 points or less from 3 µm up, but the 1.5–⁠2 µm vessels are still 15–⁠20 points off.</p>
+<p style="position:absolute;left:120px;bottom:56px;width:1400px;font-size:24px;color:#6B6F76">My BOLDsωimsuite runs: SO₂ 60%, 3% blood volume, T2 off; 3D reference test signals, 2D dictionaries, 2 voxels × 10,000 spins</p>
+<p style="position:absolute;right:120px;bottom:56px;width:120px;font-size:24px;color:#6B6F76;text-align:right">19</p>
+<aside>So this week I tested that idea, without running anything new. Each of my 96 simulations had already saved the tissue signal and the blood signal separately, so I redid the matching twice: once on the total signal, as before, and once on the tissue signal only, for the test signals and the dictionaries.
+
+On the left is the total signal, the same result as two slides ago: the 3B0 dictionary gets 3 of 12 radii right.
+
+On the right is tissue only. Now 3B0 gets 10 of 12 right, and the 2D recipe with its own direction per vessel gets 11 of 12. SO2 gets much better too: 3B0 is within 4 points from 3 microns up. The smallest vessels, 1.5 and 2 microns, are still 15 to 20 points off in SO2.
+
+So most of the 3B0 problem lives in the blood signal.
+
+Two honest limits. First, I also took the blood out of the test signals, and we can't do that with a real scan, so this shows where the bias comes from, not that a tissue-only dictionary would work on real data. Berman didn't test a tissue-only dictionary. Second, even 3B0's tissue signal isn't perfect: in Berman's Figure 7 its tissue error is about 14 percent, against about 3 for the good 2D recipe.
+
+What this means for us depends on what our dictionary includes. Jack's notebook calls a tissue-only dictionary the manuscript's design, but the MrVox runs had the blood signal switched on, with ExtraVascOnly set to 0. If our dictionary is tissue-only, 3B0 matters much less; if it includes blood, it matters a lot. That's one of my questions at the end.</aside>
+</section>

@@ -1,0 +1,27 @@
+<section id="why-compare" data-transition="fade" style="background:#FCFCFB;color:#1B1B1F;font-family:Tinos, 'Times New Roman', serif;padding:96px 120px 150px;display:flex;flex-direction:column;gap:36px">
+<h2 style="font-size:56px;font-weight:700;line-height:1.1;color:#1B1B1F">Why compare simulation recipes at all?</h2>
+<div style="display:flex;flex-direction:row;gap:12px;align-items:center">
+<div style="flex:1;align-self:stretch;background:#F1F2F3;border-radius:4px;padding:28px;display:flex;flex-direction:column;gap:10px"><h3 style="font-size:32px;font-weight:700;line-height:1.2">Test signal</h3><p style="font-size:26px;line-height:1.3;color:#4A4E55">Simulated with the 3D reference, so the true radius is known</p></div>
+<x-shape kind="arrow-right" style="width:56px;height:28px;background:#8A8F96"></x-shape>
+<div style="flex:1;align-self:stretch;background:#F1F2F3;border-radius:4px;padding:28px;display:flex;flex-direction:column;gap:10px"><h3 style="font-size:32px;font-weight:700;line-height:1.2">Dictionaries</h3><p style="font-size:26px;line-height:1.3;color:#4A4E55">The same physiology, simulated with each recipe in turn</p></div>
+<x-shape kind="arrow-right" style="width:56px;height:28px;background:#8A8F96"></x-shape>
+<div style="flex:1;align-self:stretch;background:#F7ECEA;border-radius:4px;padding:28px;display:flex;flex-direction:column;gap:10px"><h3 style="font-size:32px;font-weight:700;line-height:1.2;color:#A8322D">Reported radius</h3><p style="font-size:26px;line-height:1.3;color:#4A4E55">Compared with the true one: any gap comes from the recipe alone</p></div>
+</div>
+<div style="display:flex;flex-direction:column;gap:26px;width:1600px">
+<div style="display:flex;flex-direction:row;gap:20px"><p style="width:40px;font-size:30px;color:#5B5F66">1.</p><p style="flex:1;font-size:30px;line-height:1.35">In a scan we cannot measure the true vessel radius voxel by voxel. In a simulation we set it, so we know it exactly.</p></div>
+<div style="display:flex;flex-direction:row;gap:20px"><p style="width:40px;font-size:30px;color:#5B5F66">2.</p><p style="flex:1;font-size:30px;line-height:1.35">A dictionary carries the physics of the recipe that built it. Matching always finds a best entry, so it cannot warn us when that physics is off.</p></div>
+<div style="display:flex;flex-direction:row;gap:20px"><p style="width:40px;font-size:30px;color:#5B5F66">3.</p><p style="flex:1;font-size:30px;line-height:1.35">If two reasonable recipes report different radii for the same signal, the recipe is a source of error in every MRvF map built with it.</p></div>
+</div>
+<p style="font-size:26px;line-height:1.35;color:#4A4E55;width:1600px">Caveat: the reference is also a model (straight, randomly oriented cylinders). The test measures agreement with the best-understood recipe, not truth in tissue.</p>
+<p style="position:absolute;left:120px;bottom:56px;width:1400px;font-size:24px;color:#6B6F76">Berman et al. 2026, Sections 1, 3.3.1 and 5.2.3</p>
+<p style="position:absolute;right:120px;bottom:56px;width:120px;font-size:24px;color:#6B6F76;text-align:right">8</p>
+<aside>You asked why it makes sense to compare these models at all. Here's how I think about it.
+
+In a human scan we can't measure the true vessel radius voxel by voxel. In a simulation we set it, so we know it exactly. So Berman's group made test signals with the 3D reference recipe, where the radius is known, and then asked each of the other recipes to recover it, each using a dictionary built with that recipe. Same physiology, same settings; only the recipe changes. So if the reported radius moves, it's the recipe that moved it.
+
+Why should we care? Because a dictionary carries the physics of whatever simulated it, and matching always finds some best entry, even when that physics is off. Nothing in the matching step tells you it's wrong. So if two reasonable recipes report different radii for the same signal, the recipe itself is a source of error in every map we make with it.
+
+Why that reference? Random 3D cylinders have exact formulas for the field, no grid artefacts, the most direct diffusion model, decades of use, and most of the shortcuts were derived from them.
+
+One honest caveat: it's still a model, straight, randomly oriented cylinders. Berman calls it ground truth only for cylinder simulations. So this measures agreement with the best-understood recipe, not the truth in real tissue. But it tells us to check which recipe built our own dictionary.</aside>
+</section>
