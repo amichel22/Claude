@@ -18,7 +18,7 @@ First, you asked whether MrVox computes the field analytically or with an FFT. I
 
 Second, the y axis on Berman's Figure 4, and why it makes sense to compare these models at all. I made two new slides for that, 8 and 9. Since we covered slides 3 to 7 last week, I'll go straight there after this.
 
-Third, your comment about the purple, the orange and the red. I wasn't sure which figure you meant, so I went through every figure. On slide 4 the coloured dots only label different vessels; the caption says the colours encode different perturbers. The figure where purple and orange carry meaning is Berman's Figure 6: purple is the blood signal, orange the tissue signal and green the total. I think that's the one, so I'll show it on slide 11. I also tested the idea with my own simulations: with the tissue signal only, the 3B0 dictionary gets 10 of 12 radii right instead of 3. Could you tell me which figure you meant, so I know I understood your point?
+Third, your comment about the purple, the orange and the red. I wasn't sure which figure you meant, so I went through every figure. On slide 4 the coloured dots only label different vessels; the caption says the colours encode different perturbers. Two figures use those colours to mean something. In Berman's Figure 6, purple is the blood signal, orange the tissue signal and green the total. In Figure 8, red-orange and yellow-orange are the two full 2D recipes and purple is the single-vessel shortcut. I'll show Figure 6 on slide 11, because it's about blood versus tissue, and mention Figure 8 there. I also tested the idea with my own simulations: with the tissue signal only, the 3B0 dictionary gets 10 of 12 radii right instead of 3. Could you tell me which figure you meant, so I know I understood your point?
 
 ## Slide 3 · Why the lab needs a simulator
 
@@ -86,11 +86,11 @@ They compared everything in three ways, and the one closest to what we do is a m
 
 You asked why it makes sense to compare these models at all. Here's how I think about it.
 
-In a human scan we can't measure the true vessel radius voxel by voxel. In a simulation we set it, so we know it exactly. So Berman's group made test signals with the 3D reference recipe, where the radius is known, and then asked each of the other recipes to recover it, each using a dictionary built with that recipe. Same physiology, same settings; only the recipe changes. So if the reported radius moves, it's the recipe that moved it.
+In a human scan we can't measure the true vessel radius voxel by voxel. In a simulation we set it, so we know it exactly. So Berman's group made test signals with the 3D reference recipe, where the radius is known, and then asked each of the other recipes to recover it, each using a dictionary built with that recipe. Same physiology and the same sequence; only the recipe changes. So if the reported radius moves, it's the recipe that moved it.
 
-Why should we care? Because a dictionary carries the physics of whatever simulated it, and matching always finds some best entry, even when that physics is off. Nothing in the matching step tells you it's wrong. So if two reasonable recipes report different radii for the same signal, the recipe itself is a source of error in every map we make with it.
+Why should we care? Because a dictionary carries the physics of whatever simulated it, and matching always finds some best entry, even when that physics is off. In Berman's 3B0 panel, several of the wrong picks sit on pale, high-scoring cells, so a good fit didn't mean a right radius. So if two reasonable recipes report different radii for the same signal, the recipe itself is a source of error in every map we make with it.
 
-Why that reference? Random 3D cylinders have exact formulas for the field, no grid artefacts, the most direct diffusion model, decades of use, and most of the shortcuts were derived from them.
+Why that reference? Random 3D cylinders have an exact formula for the field and no grid artefacts. Berman says Monte Carlo diffusion may be considered the most accurate way to model diffusion. The field has a lot of experience with this model, and many of the later shortcuts were derived from it.
 
 One honest caveat: it's still a model, straight, randomly oriented cylinders. Berman calls it ground truth only for cylinder simulations. So this measures agreement with the best-understood recipe, not the truth in real tissue. But it tells us to check which recipe built our own dictionary.
 
@@ -100,17 +100,17 @@ Here's how to read Berman's Figure 4. I've taken two of its eight panels and num
 
 On the left is a dictionary that works, 2D-ANA-MC.
 
-Number 2, the x axis, is the true radius of the test signal. The test signals were simulated with the 3D reference, so for every column we know the right answer.
+Number 2, the x axis, is the true radius of the test signal. The test signals were simulated with the 3D reference, so for every column we know the right answer, at least for that model.
 
 Number 1, the y axis, is the radius of each entry in the dictionary. The figure labels it "estimated radius", but the caption says it's the dictionary radius used for comparison. So each column is one test signal compared with every entry in the dictionary.
 
-Number 3, the colour, is how alike the two decay curves are. They used R squared, the same measure Christen used, after dividing each curve by its average over time, so only the shape counts. Near white means almost identical; dark navy means 0.7 or less.
+Number 3, the colour, is how alike the two decay curves are. They used R squared, the same measure Christen 2014 used, after dividing each curve by its average over time, so only the shape counts. The review from your lab, Lin 2025, lists Christen's matching as an inner product; my own matching on slide 17 uses the normalized inner product, which also compares shape only. Near white means almost identical; dark navy means 0.7 or less.
 
 Number 4, the red square, is the best match in each column, the entry with the highest R squared. Its height is the radius the matching reports.
 
 Number 5, the black line, is where the reported radius equals the true radius. Squares on the line are right answers.
 
-Notice that the light band is narrow for the smallest vessels and gets wide from about 4 microns up. For bigger vessels, neighbouring sizes give very similar curves; Berman reports R squared above 0.99 between neighbours at the large radii. So large vessels are harder to tell apart, and that's where small errors flip the pick.
+Notice that the light band is narrow for the smallest vessels and widens from about 3 to 4 microns up: for bigger vessels, neighbouring sizes give very similar curves. Berman notes that for the FFT recipes at the largest radii, R squared was above 0.99 even between neighbouring sizes, and calls the FFT's small field errors the probable cause of their misses there.
 
 On the right is the 3B0 dictionary. Most squares sit above the line, and every miss is too large: 12 of 15 radii wrong.
 
@@ -122,7 +122,7 @@ Now the full figure, read the same way. Each panel uses a different recipe to bu
 
 The bottom-left panel, 3D-ANA-MC, is the reference matched against its own approach, so a perfect result is expected. It's a check that the matching works, not a finding.
 
-Most approaches are on the line. The 2D version with a random field direction per vessel got all fifteen right, and so did grid diffusion and the gridded 3D version. The two FFT approaches missed two each, mostly at the largest radii, where the curves are hardest to tell apart.
+Most approaches are on the line. The 2D version with a random field direction per vessel got all fifteen right, and so did grid diffusion and the gridded 3D version. The two FFT approaches missed two each, mostly at the largest radii, where the curves are hardest to tell apart; Berman calls the FFT's small field errors the probable cause.
 
 Two shortcuts did badly. The single-vessel approach missed seven, with a mean error of 13 percent. And 3B0, top right, missed twelve of fifteen, every one too large, with a mean error of 54 percent and a worst case of 233 percent. With only fifteen sizes in the dictionary, even one step off is a 17 to 50 percent error, which is why these percentages look big.
 
@@ -130,19 +130,19 @@ So the recipe alone can change the vessel size you report. And this is an ideali
 
 ## Slide 11 · Green, orange, purple: total, tissue and blood
 
-Now the colours. Last week you pointed at the purple curve. This is Berman's Figure 6, with two of its panels side by side.
+Now the colours. Last week you mentioned the purple. This is Berman's Figure 6, with two of its panels side by side.
 
-The y axis is NRMSD: for each vessel radius, how far a recipe's signal is from the 3D reference over the whole decay, as a percentage of how much the reference signal changes over time. Lower means closer, and it's a log scale.
+The y axis is NRMSD: for each vessel radius, how far a recipe's signal is from the 3D reference over the whole decay, as a percentage of the reference signal's spread over time, its standard deviation. Lower means closer, and it's a log scale.
 
 Each panel shows the same recipe three ways. Green is the total signal. Orange is only the tissue part, the extravascular signal. Purple is only the blood part, the intravascular signal.
 
 On the left, 2D-ANA-MC, green and orange sit together. Purple is higher, around 5 to 10 percent: the blood signal is the hardest part to reproduce. But blood is only 2 percent of the voxel, so that error hardly moves the total. That's why green follows orange.
 
-On the right is 3B0. Purple is about 150 percent off, because every vessel gets the same averaged field, so the blood barely dephases. Even at 2 percent of the voxel that matters, because in the reference the blood carries about a quarter of the gradient-echo decay. So the green total goes from about 120 percent at the smallest vessels down to about 40, far above the orange tissue curve at 10 to 25 percent. The blood signal is what breaks 3B0.
+On the right is 3B0. Purple is about 150 percent off, because the blood in every vessel gets the same field offset, so it barely dephases. Even at 2 percent of the voxel that matters, because in the reference the blood carries about a quarter of the gradient-echo decay. So the green total goes from about 120 percent at the smallest vessels down to about 40, far above the orange tissue curve at 10 to 25 percent. The blood signal is what breaks 3B0.
 
 I think that's what you meant: when green and orange agree, the purple doesn't matter much, and 3B0 is the exception.
 
-There's no red in this figure; the curve that follows orange is green. Berman's Figure 8 is the one with red, orange and purple together. There, the red-orange and yellow-orange markers are the two full 2D recipes, and they sit on the black reference line; the purple markers are the single-vessel shortcut, and they don't. Which of the two figures did you mean?
+There's no red in this figure; the curve that follows orange is green. Berman's Figure 8 is the one with red, orange and purple together. There, the red-orange and yellow-orange markers are the two full 2D recipes, and they sit almost on the black reference line; the purple markers are the single-vessel shortcut, and they don't. Which of the two figures did you mean?
 
 ## Slide 12 · Why 3B0 fails: the blood stops dephasing
 
@@ -160,9 +160,9 @@ That sounds small, because blood is only a few percent of the voxel. But blood n
 
 So why does this matter for us?
 
-MrVox, the Matlab toolbox, uses exactly that 3B0 shortcut, together with an FFT field and grid diffusion. It made the dictionary for the first vascular fingerprinting paper, Christen 2014, and several after it. As far as I understand, our current dictionaries come from MrVox too. Jack, correct me if that's wrong.
+MrVox, the Matlab toolbox, uses exactly that 3B0 shortcut, together with an FFT field and deterministic, grid-based diffusion. It made the dictionary for the first vascular fingerprinting paper, Christen 2014, and several after it, although Christen's paper itself doesn't mention the 3B0 averaging. As far as I understand, our current dictionaries come from MrVox too. Jack, correct me if that's wrong.
 
-To be precise about what Berman tested: their 3B0 version used the exact field and Monte Carlo, so it isolates the averaging step. Separately, the FFT recipes missed only two radii each, and grid diffusion alone got all fifteen right. How the three combine inside MrVox itself wasn't tested in these papers. Chaussé mentions an earlier conference abstract from Berman's group that compared MrVox's 3B0 method with other methods and found substantial differences, but I haven't read it.
+To be precise about what Berman tested: their 3B0 version used the exact field and Monte Carlo, so it isolates the averaging step. Separately, the FFT recipes missed only two radii each, and deterministic diffusion alone got all fifteen right. How the three combine inside MrVox itself wasn't tested in these papers. Chaussé mentions an earlier conference abstract from Berman's group that compared MrVox's 3B0 method with other methods and found substantial differences, but I haven't read it.
 
 And it's not only Berman saying this. People who work on MrVox compared 3B0 with a dictionary from realistic vessel networks in rats, and 3B0 overestimated vessel radius by 14 to 19 percent.
 

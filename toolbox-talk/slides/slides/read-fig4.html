@@ -7,17 +7,17 @@
 
 On the left is a dictionary that works, 2D-ANA-MC.
 
-Number 2, the x axis, is the true radius of the test signal. The test signals were simulated with the 3D reference, so for every column we know the right answer.
+Number 2, the x axis, is the true radius of the test signal. The test signals were simulated with the 3D reference, so for every column we know the right answer, at least for that model.
 
 Number 1, the y axis, is the radius of each entry in the dictionary. The figure labels it "estimated radius", but the caption says it's the dictionary radius used for comparison. So each column is one test signal compared with every entry in the dictionary.
 
-Number 3, the colour, is how alike the two decay curves are. They used R squared, the same measure Christen used, after dividing each curve by its average over time, so only the shape counts. Near white means almost identical; dark navy means 0.7 or less.
+Number 3, the colour, is how alike the two decay curves are. They used R squared, the same measure Christen 2014 used, after dividing each curve by its average over time, so only the shape counts. The review from your lab, Lin 2025, lists Christen's matching as an inner product; my own matching on slide 17 uses the normalized inner product, which also compares shape only. Near white means almost identical; dark navy means 0.7 or less.
 
 Number 4, the red square, is the best match in each column, the entry with the highest R squared. Its height is the radius the matching reports.
 
 Number 5, the black line, is where the reported radius equals the true radius. Squares on the line are right answers.
 
-Notice that the light band is narrow for the smallest vessels and gets wide from about 4 microns up. For bigger vessels, neighbouring sizes give very similar curves; Berman reports R squared above 0.99 between neighbours at the large radii. So large vessels are harder to tell apart, and that's where small errors flip the pick.
+Notice that the light band is narrow for the smallest vessels and widens from about 3 to 4 microns up: for bigger vessels, neighbouring sizes give very similar curves. Berman notes that for the FFT recipes at the largest radii, R squared was above 0.99 even between neighbouring sizes, and calls the FFT's small field errors the probable cause of their misses there.
 
 On the right is the 3B0 dictionary. Most squares sit above the line, and every miss is too large: 12 of 15 radii wrong.
 
